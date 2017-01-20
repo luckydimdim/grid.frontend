@@ -3,7 +3,7 @@ import 'dart:core';
 
 
 import 'package:grid/grid.dart';
-
+import 'package:resources_loader/resources_loader.dart';
 
 main() {
     var model = new DataSourceSchemaModelWithFieldsArray();
@@ -39,8 +39,9 @@ main() {
     options.columns.add(new GridColumn(field: "name", title: "Наименование договора", sortable: true)  );
     options.columns.add(new GridColumn(field: "conclusionDate", title: "Дата заключения", sortable: true, format: "{0: MM/dd/yyyy}")  );
 
+    ResourcesLoader resourcesLoader = new ResourcesLoader();
 
-    new Grid("#grid", options);
-
+    new Grid(resourcesLoader, "#grid", options);
+    new Grid(resourcesLoader, "#grid2", options);
 
 }

@@ -3,6 +3,7 @@ library kendoGrid;
 
 import 'package:js/js.dart';
 import 'dart:html';
+import 'package:resources_loader/resources_loader.dart';
 
 @anonymous
 @JS()
@@ -144,104 +145,30 @@ class _KendoGrid {
 class Grid  {
 
   _KendoGrid _kendoGrid;
+  ResourcesLoader _resourcesLoader;
 
-  Grid(String query, GridOptions options){
+  Grid(this._resourcesLoader, String query, GridOptions options){
 
     bool minificated = true;
 
-    var commonLink = new LinkElement()
-      ..type = 'text/css'
-      ..rel = 'stylesheet'
-      ..href = 'packages/grid/src/kendo.common.min.css';
-    document.head.append(commonLink);
-    
-    var defaultLink = new LinkElement()
-      ..type = 'text/css'
-      ..rel = 'stylesheet'
-      ..href = 'packages/grid/src/kendo.default.min.css';
-    document.head.append(defaultLink);
-    
-    var coreScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.core.min.js';
-    document.body.append(coreScript);
+    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.common.min.css');
+    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.default.min.css');
 
-    var dataScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.data.min.js';
-    document.body.append(dataScript);
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.core.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.data.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.columnsorter.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.calendar.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.popup.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.datepicker.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.userevents.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.numerictextbox.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.list.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.dropdownlist.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.binder.min.js', false );
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.filtermenu.min.js', false );
 
-    var columnsorterScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.columnsorter.min.js';
-    document.body.append(columnsorterScript);
+    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.grid.min.js', false, onData: () => new _KendoGrid(query, options));
 
-    var calendarScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.calendar.min.js';
-    document.body.append(calendarScript);
-
-    var popupScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.popup.min.js';
-    document.body.append(popupScript);
-
-    var datepickerScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.datepicker.min.js';
-    document.body.append(datepickerScript);
-
-    var usereventsScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.userevents.min.js';
-    document.body.append(usereventsScript);
-
-    var numerictextboxScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.numerictextbox.min.js';
-    document.body.append(numerictextboxScript);
-
-    var listScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.list.min.js';
-    document.body.append(listScript);
-
-    var dropdownlistScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.dropdownlist.min.js';
-    document.body.append(dropdownlistScript);
-
-    var binderScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.binder.min.js';
-    document.body.append(binderScript);
-
-    var filtermenuScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.filtermenu.min.js';
-    document.body.append(filtermenuScript);
-
-    var gridScript = new ScriptElement()
-      ..async = false
-      ..type = 'text/javascript'
-      ..src = 'packages/grid/src/kendo.grid'+ (minificated?'.min':'')+'.js';
-    document.body.append(gridScript);
-
-    gridScript.onLoad.listen((e) {
-      _kendoGrid = new _KendoGrid(query, options);
-    });
 
   }
 }
