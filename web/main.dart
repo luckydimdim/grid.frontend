@@ -41,7 +41,7 @@ main() {
       sortable: true,
       format: "{0: MM/dd/yyyy}"));
 
-  ResourcesLoader resourcesLoader = new ResourcesLoader();
+  ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   new Grid(resourcesLoader, "#grid", options);
   new Grid(resourcesLoader, "#grid2", options);

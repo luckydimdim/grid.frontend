@@ -145,7 +145,7 @@ class _KendoGrid {
 
 class Grid {
   _KendoGrid _kendoGrid;
-  ResourcesLoader _resourcesLoader;
+  ResourcesLoaderService _resourcesLoader;
 
   Grid(this._resourcesLoader, String query, GridOptions options) {
     bool minificated = true;
