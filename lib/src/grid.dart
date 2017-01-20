@@ -29,14 +29,19 @@ class GridColumn {
   external String get format;
   external set format(String v);
 
-  external factory GridColumn({String field, String title, int width, bool filterable, bool lockable, bool sortable, String format});
+  external factory GridColumn(
+      {String field,
+      String title,
+      int width,
+      bool filterable,
+      bool lockable,
+      bool sortable,
+      String format});
 }
-
 
 @anonymous
 @JS()
 class GridOptions {
-
   external List<GridColumn> get columns;
   external set columns(List<GridColumn> v);
 
@@ -52,15 +57,17 @@ class GridOptions {
   external DataSource get dataSource;
   external set dataSource(DataSource v);
 
-
-  external factory GridOptions({List<GridColumn> columns, bool sortable, bool filterable, int height, DataSource dataSource});
-
+  external factory GridOptions(
+      {List<GridColumn> columns,
+      bool sortable,
+      bool filterable,
+      int height,
+      DataSource dataSource});
 }
 
 @anonymous
 @JS()
 class DataSourceTransportRead {
-
   external String get url;
   external set url(String v);
 
@@ -70,26 +77,22 @@ class DataSourceTransportRead {
   external String get dataType;
   external set dataType(String v);
 
-  external factory DataSourceTransportRead({String url, String type, String dataType});
+  external factory DataSourceTransportRead(
+      {String url, String type, String dataType});
 }
-
 
 @anonymous
 @JS()
 class DataSourceTransport {
-
   external DataSourceTransportRead get read;
   external set read(DataSourceTransportRead v);
-
 
   external factory DataSourceTransport({DataSourceTransportRead read});
 }
 
-
 @anonymous
 @JS()
 class DataSourceSchemaModelField {
-
   external String get field;
   external set field(String v);
 
@@ -99,31 +102,29 @@ class DataSourceSchemaModelField {
   external factory DataSourceSchemaModelField({String field, String type});
 }
 
-
-
 @anonymous
 @JS()
-class DataSourceSchemaModelWithFieldsArray{
-   external List<DataSourceSchemaModelField> get fields;
-   external set fields(List<DataSourceSchemaModelField> v);
+class DataSourceSchemaModelWithFieldsArray {
+  external List<DataSourceSchemaModelField> get fields;
+  external set fields(List<DataSourceSchemaModelField> v);
 
-   external factory DataSourceSchemaModelWithFieldsArray({List<DataSourceSchemaModelField> fields});
+  external factory DataSourceSchemaModelWithFieldsArray(
+      {List<DataSourceSchemaModelField> fields});
 }
 
 @anonymous
 @JS()
 class DataSourceSchema {
-
   external DataSourceSchemaModelWithFieldsArray get model;
   external set model(DataSourceSchemaModelWithFieldsArray v);
 
-  external factory DataSourceSchema({DataSourceSchemaModelWithFieldsArray model});
+  external factory DataSourceSchema(
+      {DataSourceSchemaModelWithFieldsArray model});
 }
 
 @anonymous
 @JS()
 class DataSource {
-
   external String get type;
   external set type(String v);
 
@@ -133,8 +134,8 @@ class DataSource {
   external DataSourceSchema get schema;
   external set schema(DataSourceSchema v);
 
-  external factory DataSource({String type, DataSourceTransport transport, DataSourceSchema schema});
-
+  external factory DataSource(
+      {String type, DataSourceTransport transport, DataSourceSchema schema});
 }
 
 @JS('kendo.ui.Grid')
@@ -142,33 +143,43 @@ class _KendoGrid {
   external _KendoGrid(String query, GridOptions options);
 }
 
-class Grid  {
-
+class Grid {
   _KendoGrid _kendoGrid;
   ResourcesLoader _resourcesLoader;
 
-  Grid(this._resourcesLoader, String query, GridOptions options){
-
+  Grid(this._resourcesLoader, String query, GridOptions options) {
     bool minificated = true;
 
     _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.common.min.css');
     _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.default.min.css');
 
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.core.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.data.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.columnsorter.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.calendar.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.popup.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.datepicker.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.userevents.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.numerictextbox.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.list.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.dropdownlist.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.binder.min.js', false );
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.filtermenu.min.js', false );
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.core.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.data.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.columnsorter.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.calendar.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.popup.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.datepicker.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.userevents.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.numerictextbox.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.list.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.dropdownlist.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.binder.min.js', false);
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.filtermenu.min.js', false);
 
-    _resourcesLoader.loadScript('packages/grid/src/', 'kendo.grid.min.js', false, onData: () => new _KendoGrid(query, options));
-
-
+    _resourcesLoader.loadScript(
+        'packages/grid/src/', 'kendo.grid.min.js', false,
+        onData: () => new _KendoGrid(query, options));
   }
 }
