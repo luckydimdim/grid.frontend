@@ -4,45 +4,36 @@ import 'package:grid/grid.dart';
 import 'package:resources_loader/resources_loader.dart';
 
 main() {
-  var model = new DataSourceSchemaModelWithFieldsArray();
-  model.fields = new List<DataSourceSchemaModelField>();
 
-  model.fields.add(
-      new DataSourceSchemaModelField(field: "conclusionDate", type: "date"));
+  var columns = new List<Column>();
+  columns.add(new Column(field: 'id', caption: 'id', size: '100px'));
+  columns.add(new Column(field: 'number', caption: '№', size: '100px'));
+  columns.add(new Column(field: '01_01_2017', caption: '01', size: '10px'));
+  columns.add(new Column(field: '02_01_2017', caption: '02', size: '10px'));
+  columns.add(new Column(field: '03_01_2017', caption: '03', size: '10px'));
+  columns.add(new Column(field: '04_01_2017', caption: '04', size: '10px'));
+  columns.add(new Column(field: '05_01_2017', caption: '05', size: '10px'));
+  columns.add(new Column(field: '06_01_2017', caption: '06', size: '10px'));
+  columns.add(new Column(field: '07_01_2017', caption: '07', size: '10px'));
+  columns.add(new Column(field: '08_01_2017', caption: '08', size: '10px'));
+  columns.add(new Column(field: '09_01_2017', caption: '09', size: '10px'));
+  columns.add(new Column(field: '10_01_2017', caption: '10', size: '10px'));
 
-  var schema = new DataSourceSchema()..model = model;
+  var groups = new List<ColumnGroup>();
 
-  var transportRead = new DataSourceTransportRead()
-    ..type = "get"
-    ..dataType = "json"
-    ..url = "//localhost:5000/api/contract";
+  groups.add(new ColumnGroup(caption: 'safd', span: 1 ));
+  groups.add(new ColumnGroup(caption: 'kdjdh', span: 1 ));
+  groups.add(new ColumnGroup(caption: 'dfghdfh', span: 10 ));
 
-  var transport = new DataSourceTransport()..read = transportRead;
-
-  var dataSource = new DataSource()
-    ..type = "odata"
-    ..schema = schema
-    ..transport = transport;
-
-  GridOptions options = new GridOptions()
-    ..dataSource = dataSource
-    ..columns = new List<GridColumn>()
-    ..filterable = true
-    //..height = 500
-    ..sortable = true;
-
-  options.columns.add(new GridColumn(
-      field: "number", title: "№", width: 150, filterable: true));
-  options.columns.add(new GridColumn(
-      field: "name", title: "Наименование договора", sortable: true));
-  options.columns.add(new GridColumn(
-      field: "conclusionDate",
-      title: "Дата заключения",
-      sortable: true,
-      format: "{0: MM/dd/yyyy}"));
+  var options = new GridOptions()
+  ..name = 'grid'
+  ..columns = columns
+  ..columnGroups = groups
+  ..url='http://localhost:5000/api/contract/'
+  ..method='GET';
 
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   new Grid(resourcesLoader, "#grid", options);
-  new Grid(resourcesLoader, "#grid2", options);
+  //new Grid(resourcesLoader, "#grid2", options);
 }
