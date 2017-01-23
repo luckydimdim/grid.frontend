@@ -150,8 +150,8 @@ class Grid {
   Grid(this._resourcesLoader, String query, GridOptions options) {
     bool minificated = true;
 
-    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.common.min.css');
-    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.default.min.css');
+    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.common-bootstrap.min.css');
+    _resourcesLoader.loadStyle('packages/grid/src/', 'kendo.bootstrap.min.css');
 
     _resourcesLoader.loadScript(
         'packages/grid/src/', 'kendo.core.min.js', false);
