@@ -155,7 +155,7 @@ class Grid {
     _resourcesLoader.loadScript(
         'packages/grid/src/', 'w2ui-1.5.rc1.js', false,
         onData: (){
-          var object = new JsObject(context['\$'], ['#grid']);
+          var object = new JsObject(context['\$'], [query]);
           object.callMethod('w2grid', [options]);
         }
 
