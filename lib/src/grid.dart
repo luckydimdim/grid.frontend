@@ -66,13 +66,13 @@ class Column {
   external set render(dynamic v);
 
   external bool get sortable;
-  external set sortable(String v);
+  external set sortable(bool v);
 
   external bool get resizable;
-  external set resizable(String v);
+  external set resizable(bool v);
 
   external bool get frozen;
-  external set frozen(String v);
+  external set frozen(bool v);
 
   external factory Column({String field, String caption, String size, String attr, dynamic render, bool sortable, bool resizable, bool frozen });
 }
