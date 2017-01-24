@@ -45,7 +45,6 @@ class ShowOptions {
   external bool get expandColumn;
   external set expandColumn(bool v);
 
-  external factory ShowOptions({bool header, bool toolbar,bool footer,bool lineNumbers,bool selectColumn,bool expandColumn});
 }
 
 @anonymous
@@ -154,9 +153,9 @@ class Grid {
     _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
 
     _resourcesLoader.loadScript(
-        'packages/grid/src/', 'w2ui-1.5.rc1.min.js', false,
+        'packages/grid/src/', 'w2ui-1.5.rc1.js', false,
         onData: (){
-          var object = new JsObject(context['\$'], ['#grid']);
+          var object = new JsObject(context['\$'], [query]);
           object.callMethod('w2grid', [options]);
         }
 
