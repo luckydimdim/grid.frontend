@@ -146,19 +146,34 @@ class GridOptions {
   List<SearchOption> searches, bool multiSelect, bool fixedBody, List<ColumnGroup> columnGroups, bool multiSearch});
 }
 
+@JS()
+class JQuery {
+  external w2grid(GridOptions options);
+  external w2destroy(String name);
+}
+
+@JS()
+external JQuery $([String query]);
+
 class Grid {
   ResourcesLoaderService _resourcesLoader;
+  String _name;
 
   Grid(this._resourcesLoader, String query, GridOptions options) {
+    _name = options.name;
+
     _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
 
     _resourcesLoader.loadScript(
         'packages/grid/src/', 'w2ui-1.5.rc1.js', false,
         onData: (){
-          var object = new JsObject(context['\$'], [query]);
-          object.callMethod('w2grid', [options]);
+          $(query).w2grid(options);
         }
 
         );
+  }
+
+  Destroy(){
+    $().w2destroy(_name);
   }
 }
