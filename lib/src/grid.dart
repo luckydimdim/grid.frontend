@@ -173,7 +173,8 @@ class Grid {
   Grid(this._resourcesLoader, String query, GridOptions options) {
     _name = options.name;
 
-    _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
+    //_resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
+    _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.css');
 
     _resourcesLoader.loadScript('packages/grid/src/', 'w2ui-1.5.rc1.js', false,
         onData: () {
