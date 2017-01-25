@@ -6,8 +6,6 @@ import 'dart:html';
 import 'dart:js';
 import 'package:resources_loader/resources_loader.dart';
 
-
-
 @anonymous
 @JS()
 class SearchOption {
@@ -20,9 +18,8 @@ class SearchOption {
   external String get caption;
   external set caption(String v);
 
-  external factory SearchOption({String type, String field,String caption});
+  external factory SearchOption({String type, String field, String caption});
 }
-
 
 @anonymous
 @JS()
@@ -44,7 +41,6 @@ class ShowOptions {
 
   external bool get expandColumn;
   external set expandColumn(bool v);
-
 }
 
 @anonymous
@@ -74,7 +70,15 @@ class Column {
   external bool get frozen;
   external set frozen(bool v);
 
-  external factory Column({String field, String caption, String size, String attr, dynamic render, bool sortable, bool resizable, bool frozen });
+  external factory Column(
+      {String field,
+      String caption,
+      String size,
+      String attr,
+      dynamic render,
+      bool sortable,
+      bool resizable,
+      bool frozen});
 }
 
 @anonymous
@@ -85,7 +89,6 @@ class SortOption {
 
   external String get direction;
   external set direction(String v);
-
 
   external factory SortOption({String field, String direction});
 }
@@ -108,7 +111,6 @@ class ColumnGroup {
 @anonymous
 @JS()
 class GridOptions {
-
   external String get name;
   external set name(String v);
 
@@ -142,8 +144,17 @@ class GridOptions {
   external List<SearchOption> get searches;
   external set searches(List<SearchOption> v);
 
-  external factory GridOptions({String name, List<Column> columns, String url, String method, String header,
-  List<SearchOption> searches, bool multiSelect, bool fixedBody, List<ColumnGroup> columnGroups, bool multiSearch});
+  external factory GridOptions(
+      {String name,
+      List<Column> columns,
+      String url,
+      String method,
+      String header,
+      List<SearchOption> searches,
+      bool multiSelect,
+      bool fixedBody,
+      List<ColumnGroup> columnGroups,
+      bool multiSearch});
 }
 
 @JS()
@@ -164,16 +175,13 @@ class Grid {
 
     _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
 
-    _resourcesLoader.loadScript(
-        'packages/grid/src/', 'w2ui-1.5.rc1.js', false,
-        onData: (){
-          $(query).w2grid(options);
-        }
-
-        );
+    _resourcesLoader.loadScript('packages/grid/src/', 'w2ui-1.5.rc1.js', false,
+        onData: () {
+      $(query).w2grid(options);
+    });
   }
 
-  Destroy(){
+  Destroy() {
     $().w2destroy(_name);
   }
 }

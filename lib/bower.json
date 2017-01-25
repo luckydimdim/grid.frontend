@@ -1,0 +1,29 @@
+{
+  "name": "cmas",
+  "authors": [
+    "Andrey Kuzmenko <andrey.kuzmenko@yamalspg.ru>",
+    "Dmitriy Litovchenko <dmitriy.litovchenko@yamalspg.ru>"
+  ],
+  "description": "cmas",
+  "main": "web/main.dart",
+  "keywords": [
+    "cmas"
+  ],
+  "license": "yamallng",
+  "homepage": "http://yamalspg.ru/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "../web/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "fontawesome#^4.7.0",
+    "simple-line-icons": "^2.4.1",
+    "bootstrap": "v4.0.0-alpha.5",
+    "jquery": "^3.1.1",
+    "PACE": "pace#^1.0.2"
+  }
+}
