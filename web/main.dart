@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:js/js.dart';
+import 'package:js/js_util.dart';
 
 import 'package:grid/grid.dart';
 import 'package:resources_loader/resources_loader.dart';
@@ -8,9 +9,10 @@ import 'package:resources_loader/resources_loader.dart';
 
 String render(dynamic record,dynamic ind, dynamic col_ind, dynamic data){
 
-  /* непонятно как работать с record. не получается вытянуть свойства (ID) */
 
-  var html = '<a href="#/master/contractView">'+ data +'</a>';
+  var code = getProperty(record,'Code');
+
+  var html = '<a href="#/master/contractView/$code">$data</a>';
   return html;
 }
 
