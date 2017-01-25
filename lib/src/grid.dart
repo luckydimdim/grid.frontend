@@ -33,14 +33,47 @@ class ShowOptions {
   external bool get footer;
   external set footer(bool v);
 
+  external bool get columnHeaders;
+  external set columnHeaders(bool v);
+
   external bool get lineNumbers;
   external set lineNumbers(bool v);
+
+  external bool get expandColumn;
+  external set expandColumn(bool v);
 
   external bool get selectColumn;
   external set selectColumn(bool v);
 
-  external bool get expandColumn;
-  external set expandColumn(bool v);
+  external bool get emptyRecords;
+  external set emptyRecords(bool v);
+
+  external bool get toolbarReload;
+  external set toolbarReload(bool v);
+
+  external bool get toolbarColumns;
+  external set toolbarColumns(bool v);
+
+  external bool get toolbarSearch;
+  external set toolbarSearch(bool v);
+
+  external bool get toolbarAdd;
+  external set toolbarAdd(bool v);
+
+  external bool get toolbarDelete;
+  external set toolbarDelete(bool v);
+
+  external bool get toolbarSave;
+  external set toolbarSave(bool v);
+
+  external bool get selectionBorder;
+  external set selectionBorder(bool v);
+
+  external bool get recordTitles;
+  external set recordTitles(bool v);
+
+  external bool get skipRecords;
+  external set skipRecords(bool v);
 }
 
 @anonymous
