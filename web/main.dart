@@ -1,13 +1,26 @@
 import 'dart:core';
 
+import 'package:js/js.dart';
+import 'package:js/js_util.dart';
+
 import 'package:grid/grid.dart';
 import 'package:resources_loader/resources_loader.dart';
+
+
+String render(dynamic record,dynamic ind, dynamic col_ind, dynamic data){
+
+
+  var code = getProperty(record,'Code');
+
+  var html = '<a href="#/master/contractView/$code">$data</a>';
+  return html;
+}
 
 main() {
 
   var columns = new List<Column>();
   columns.add(new Column(field: 'Code', caption: 'Код этапа', size: '100px', frozen: true));
-  columns.add(new Column(field: 'Name', caption: 'Наименование этапа/работы', size: '200px', frozen: true));
+  columns.add(new Column(field: 'Name', caption: 'Наименование этапа/работы', size: '200px', frozen: true, render: allowInterop(render)));
 
   var monthColumnWidth = '100px';
 
