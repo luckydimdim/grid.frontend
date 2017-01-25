@@ -2030,7 +2030,7 @@ button.w2ui-btn-small:focus:before {
   cursor: pointer;
 }
 .w2ui-grid .w2ui-grid-body table .w2ui-col-select {
-  width: 26px;
+  width: 50px;
 }
 .w2ui-grid .w2ui-grid-body table .w2ui-col-select div {
   padding: 0px 0px;
