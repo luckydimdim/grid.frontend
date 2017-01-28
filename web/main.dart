@@ -87,7 +87,8 @@ main() {
     ..name = 'grid'
     ..columns = columns
     ..columnGroups = groups
-    ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
+    //..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
+    ..url = 'http://localhost:5000/api/contractBudget/months/1'    
     ..method = 'GET';
 
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
