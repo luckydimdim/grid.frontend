@@ -19,6 +19,9 @@ class Column {
   String  cellsFormat;
 
   @Reflectable()
+  String  width;
+
+  @Reflectable()
   String  dataField = '';
 
   @Reflectable()
