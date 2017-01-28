@@ -1,9 +1,13 @@
+import 'dart:async';
 import 'dart:core';
 
 import 'package:js/js.dart';
 import 'package:js/js_util.dart';
 
 import 'package:grid/grid.dart';
+import 'package:grid/jq_grid.dart' as jq;
+import 'package:grid/JsObjectConverter.dart';
+
 import 'package:resources_loader/resources_loader.dart';
 
 String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
@@ -13,7 +17,33 @@ String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
   return html;
 }
 
-main() {
+main() async {
+
+  //InitW2uiGrid();
+  InitJqGrid();
+}
+
+Future InitJqGrid() async {
+
+  ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
+
+  var columns = new List<jq.Column>();
+  columns.add(new jq.Column()..text = 'Code'..dataField='Code');
+
+  var dataFields = new List<jq.DataField>();
+  dataFields.add(new jq.DataField()..name='Code'..type='number');
+
+  var source = new jq.SourceOptions()..url = 'http://localhost:5000/api/contract/1/works'..dataFields = dataFields..id = 'EmployeeID'..dataType='json';
+
+  var options = new jq.GridOptions()..columns = columns..source=source..checkboxes=true;
+
+  var grid = new jq.jqGrid(resourcesLoader, '#grid', JsObjectConverter.convert(options));
+
+  await grid.Init();
+
+}
+
+void InitW2uiGrid() {
   var columns = new List<Column>();
   columns.add(new Column(
       field: 'Code', caption: 'Код этапа', size: '100px', frozen: true));
@@ -87,14 +117,11 @@ main() {
     ..name = 'grid'
     ..columns = columns
     ..columnGroups = groups
-    //..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
-    ..url = 'http://localhost:5000/api/contractBudget/months/1'    
+  //..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
+    ..url = 'http://localhost:5000/api/contractBudget/months/1'
     ..method = 'GET';
 
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   new Grid(resourcesLoader, "#grid", options);
-  //new Grid(resourcesLoader, "#grid2", options);
 }
-
-void AddDaysColumns(DateTime dateFrom, DateTime dateTill) {}

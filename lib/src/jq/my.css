@@ -1,0 +1,30 @@
+.jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-column-header, .jqx-widget .jqx-grid-group-cell {
+    border-color: transparent;
+	
+}
+
+.jqx-widget-header {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -ms-touch-action: none;
+    -moz-background-clip: padding;
+    -webkit-text-size-adjust: none;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-color: transparent;
+    background: white;
+	font-weight: bold;
+	    vertical-align: bottom;
+    border-bottom: 2px solid rgb(209, 212, 215);
+}
+
+.jqx-cell  {
+    vertical-align: top;
+    padding: 0.75rem;
+    padding-top: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    border-top: 1px solid rgb(209, 212, 215);
+}
