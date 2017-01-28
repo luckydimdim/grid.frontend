@@ -60,6 +60,9 @@ class GridOptions {
 
   @Reflectable()
   EditSettings  editSettings = new EditSettings();
+
+  @Reflectable()
+  bool autoRowHeight = true;
 }
 
 class ColumnGroup {
