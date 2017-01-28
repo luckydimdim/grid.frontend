@@ -207,9 +207,9 @@ class Grid {
     _name = options.name;
 
     //_resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.min.css');
-    _resourcesLoader.loadStyle('packages/grid/src/', 'w2ui-1.5.rc1.css');
+    _resourcesLoader.loadStyle('packages/grid/src/w2ui/', 'w2ui-1.5.rc1.css');
 
-    _resourcesLoader.loadScript('packages/grid/src/', 'w2ui-1.5.rc1.js', false,
+    _resourcesLoader.loadScript('packages/grid/src/w2ui/', 'w2ui-1.5.rc1.js', false,
         onData: () {
       $(query).w2grid(options);
     });
