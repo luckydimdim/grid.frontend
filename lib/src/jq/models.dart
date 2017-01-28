@@ -26,6 +26,10 @@ class Column {
 
   @Reflectable()
   bool  pinned = false;
+
+  @Reflectable()
+  bool  autoCellHeight = false;
+
 }
 
 class GridOptions {
