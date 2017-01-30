@@ -43,7 +43,13 @@ Future InitJqGrid() async {
   dataFields.add(new jq.DataField()..name='Code'..type='number');
   dataFields.add(new jq.DataField()..name='Name'..type='string');
 
-  var source = new jq.SourceOptions()..url = 'http://localhost:5000/api/contract/1/works'..dataFields = dataFields..id = 'EmployeeID'..dataType='json';
+  var source = new jq.SourceOptions()
+    //..url = 'http://localhost:5000/api/contract/1/works'
+    ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contract/1/works'
+
+    ..dataFields = dataFields
+      ..id = 'EmployeeID'
+      ..dataType='json';
 
   var options = new jq.GridOptions()..columns = columns..source=source..checkboxes=true;
 
@@ -127,8 +133,8 @@ void InitW2uiGrid() {
     ..name = 'grid'
     ..columns = columns
     ..columnGroups = groups
-  //..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
-    ..url = 'http://localhost:5000/api/contractBudget/months/1'
+    ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
+    //..url = 'http://localhost:5000/api/contractBudget/months/1'
     ..method = 'GET';
 
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
