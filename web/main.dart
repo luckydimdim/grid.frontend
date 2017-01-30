@@ -17,6 +17,14 @@ String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
   return html;
 }
 
+String renderjq(dynamic row, dynamic dataField, dynamic cellValue, dynamic rowData, dynamic cellText) {
+
+  var name  = getProperty(rowData, 'Name');
+ // var name  = rowData.Name;
+
+  return 'hi row: $row dataField: $dataField cellValue: $cellValue rowData: $rowData cellText: $cellText data: $name';
+}
+
 main() async {
 
   //InitW2uiGrid();
@@ -28,10 +36,12 @@ Future InitJqGrid() async {
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   var columns = new List<jq.Column>();
-  columns.add(new jq.Column()..text = 'Code'..dataField='Code');
+  columns.add(new jq.Column()..text = 'Code'..dataField='Code'..cellsRenderer = allowInterop(renderjq));
+  columns.add(new jq.Column()..text = 'Name'..dataField='Name');
 
   var dataFields = new List<jq.DataField>();
   dataFields.add(new jq.DataField()..name='Code'..type='number');
+  dataFields.add(new jq.DataField()..name='Name'..type='string');
 
   var source = new jq.SourceOptions()..url = 'http://localhost:5000/api/contract/1/works'..dataFields = dataFields..id = 'EmployeeID'..dataType='json';
 

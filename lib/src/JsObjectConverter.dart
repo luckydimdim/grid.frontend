@@ -13,7 +13,7 @@ class JsSimple {
 }
 
 bool isJsSimple(dynamic value) {
-  if (value is String || value is bool || value is int || value is double) {
+  if (value is String || value is bool || value is int || value is double || value is Function) {
     return true;
   }
 
@@ -41,10 +41,12 @@ class JsObjectConverter {
           .getField(k)
           .reflectee; // <-- works ok
 
+      var isSimple = isJsSimple(value);
 
+      //print('<$type> $name:$value (simple: $isSimple)');
 
       if (value != null) {
-        if (isJsSimple(value)) {
+        if (isSimple) {
           setProperty(result, name, value);
         }
         else if (value is List) {

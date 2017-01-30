@@ -30,6 +30,9 @@ class Column {
   @Reflectable()
   bool  autoCellHeight = false;
 
+  @Reflectable()
+  dynamic cellsRenderer;
+
 }
 
 class GridOptions {
