@@ -55,8 +55,8 @@ class GridOptions {
   @Reflectable()
   List<Column>  columns;
 
-  //@Reflectable()
-  //List<ColumnGroup>  columnGroups = new List<ColumnGroup>();
+  @Reflectable()
+  List<ColumnGroup>  columnGroups;
 
   @Reflectable()
   SourceOptions source;
@@ -77,7 +77,7 @@ class ColumnGroup {
   String name = '';
 
   @Reflectable()
-  String align = '';
+  String align;
 }
 
 class EditSettings {
