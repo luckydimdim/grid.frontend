@@ -15,6 +15,8 @@ class JQuery {
 
   @JS('jqx.dataAdapter')
   external dataAdapter(Object source);
+
+  external on(String event, dynamic function);
 }
 
 @JS()
