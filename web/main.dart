@@ -1,5 +1,13 @@
 import 'dart:async';
 import 'dart:core';
+import 'package:angular2/platform/browser.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/src/core/reflection/reflection.dart';
+import 'package:angular2/router.dart';
+import 'package:angular2/platform/common.dart';
+
+import 'package:resources_loader/resources_loader.dart';
+import 'package:master_layout/master_layout_component.dart';
 
 import 'package:js/js.dart';
 import 'package:js/js_util.dart';
@@ -8,7 +16,51 @@ import 'package:grid/grid.dart';
 import 'package:grid/jq_grid.dart' as jq;
 import 'package:grid/JsObjectConverter.dart';
 
-import 'package:resources_loader/resources_loader.dart';
+
+bool get isDebug =>
+  (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) != 'true';
+
+@Component(selector: 'app')
+@View(
+  template: '''
+    <master-layout>
+      <grid></grid>
+    </master-layout>''',
+  directives: const [MasterLayoutComponent, GridComponent])
+class AppComponent implements AfterViewInit {
+
+  @override
+  ngAfterViewInit() {
+    // TODO: implement ngAfterViewInit
+  }
+}
+
+@Component(selector: 'grid')
+@View(
+  template: '<div id="grid"></div><div id="grid2"></div>')
+class GridComponent implements AfterViewInit {
+  @override
+  ngAfterViewInit()  {
+    InitJqGrid();
+  }
+}
+
+main() async {
+  if (isDebug) {
+    reflector.trackUsage();
+  }
+
+  ComponentRef ref = await bootstrap(AppComponent, [
+    ROUTER_PROVIDERS,
+    const Provider(LocationStrategy, useClass: HashLocationStrategy),
+    const Provider(ResourcesLoaderService)]);
+
+  if (isDebug) {
+    print('Application in DebugMode');
+    enableDebugTools(ref);
+    print('Unused keys: ${reflector.listUnusedKeys()}');
+  }
+}
 
 String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
   var code = getProperty(record, 'Code');
@@ -18,21 +70,12 @@ String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
 }
 
 String renderjq(dynamic row, dynamic dataField, dynamic cellValue, dynamic rowData, dynamic cellText) {
-
   var name  = getProperty(rowData, 'Name');
- // var name  = rowData.Name;
 
   return 'hi row: $row dataField: $dataField cellValue: $cellValue rowData: $rowData cellText: $cellText data: $name';
 }
 
-main() async {
-
-  //InitW2uiGrid();
-  InitJqGrid();
-}
-
 Future InitJqGrid() async {
-
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   var columns = new List<jq.Column>();
@@ -44,7 +87,6 @@ Future InitJqGrid() async {
   dataFields.add(new jq.DataField()..name='Name'..type='string');
 
   var source = new jq.SourceOptions()
-    //..url = 'http://localhost:5000/api/contract/1/works'
     ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contract/1/works'
 
     ..dataFields = dataFields
@@ -134,7 +176,6 @@ void InitW2uiGrid() {
     ..columns = columns
     ..columnGroups = groups
     ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contractBudget/months/1'
-    //..url = 'http://localhost:5000/api/contractBudget/months/1'
     ..method = 'GET';
 
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();

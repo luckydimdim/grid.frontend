@@ -43,8 +43,6 @@ class JsObjectConverter {
 
       var isSimple = isJsSimple(value);
 
-      //print('<$type> $name:$value (simple: $isSimple)');
-
       if (value != null) {
         if (isSimple) {
           setProperty(result, name, value);
