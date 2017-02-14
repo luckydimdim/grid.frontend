@@ -24,24 +24,18 @@ bool get isDebug =>
 @View(
   template: '''
     <master-layout>
-      <grid></grid>
+      <griiiid></griiiid>
     </master-layout>''',
   directives: const [MasterLayoutComponent, GridComponent])
-class AppComponent implements AfterViewInit {
+class AppComponent {}
 
-  @override
-  ngAfterViewInit() {
-    // TODO: implement ngAfterViewInit
-  }
-}
-
-@Component(selector: 'grid')
+@Component(selector: 'griiiid')
 @View(
   template: '<div id="grid"></div><div id="grid2"></div>')
 class GridComponent implements AfterViewInit {
   @override
-  ngAfterViewInit()  {
-    InitJqGrid();
+  Future ngAfterViewInit() async {
+    await InitJqGrid();
   }
 }
 
@@ -70,7 +64,7 @@ String render(dynamic record, dynamic ind, dynamic col_ind, dynamic data) {
 }
 
 String renderjq(dynamic row, dynamic dataField, dynamic cellValue, dynamic rowData, dynamic cellText) {
-  var name  = getProperty(rowData, 'Name');
+  var name = getProperty(rowData, 'Name');
 
   return 'hi row: $row dataField: $dataField cellValue: $cellValue rowData: $rowData cellText: $cellText data: $name';
 }
@@ -79,26 +73,25 @@ Future InitJqGrid() async {
   ResourcesLoaderService resourcesLoader = new ResourcesLoaderService();
 
   var columns = new List<jq.Column>();
-  columns.add(new jq.Column()..text = 'Code'..dataField='Code'..cellsRenderer = allowInterop(renderjq));
-  columns.add(new jq.Column()..text = 'Name'..dataField='Name');
+  columns.add(new jq.Column()..text = 'Code'..dataField = 'Code'..cellsRenderer = allowInterop(renderjq));
+  columns.add(new jq.Column()..text = 'Name'..dataField = 'Name');
 
   var dataFields = new List<jq.DataField>();
-  dataFields.add(new jq.DataField()..name='Code'..type='number');
-  dataFields.add(new jq.DataField()..name='Name'..type='string');
+  dataFields.add(new jq.DataField()..name = 'Code'..type = 'number');
+  dataFields.add(new jq.DataField()..name = 'Name'..type = 'string');
 
   var source = new jq.SourceOptions()
     ..url = 'http://cm-ylng-msk-01/cmas-backend/api/contract/1/works'
 
     ..dataFields = dataFields
       ..id = 'EmployeeID'
-      ..dataType='json';
+      ..dataType = 'json';
 
-  var options = new jq.GridOptions()..columns = columns..source=source..checkboxes=true;
+  var options = new jq.GridOptions()..columns = columns..source = source..checkboxes = true;
 
   var grid = new jq.jqGrid(resourcesLoader, '#grid', JsObjectConverter.convert(options));
 
   await grid.Init();
-
 }
 
 void InitW2uiGrid() {

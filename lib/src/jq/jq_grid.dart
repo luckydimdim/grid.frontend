@@ -31,14 +31,14 @@ class jqGrid {
     _resourcesLoader.loadStyle('packages/grid/src/jq/', 'jqx.bootstrap.css');
     _resourcesLoader.loadStyle('packages/grid/src/jq/', 'my.css');
 
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxcore.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxbuttons.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxscrollbar.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxdatatable.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxdata.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxcheckbox.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxlistbox.js', false);
-    await _resourcesLoader.loadScript('packages/grid/src/jq/', 'jqxtreegrid.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxcore.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxbuttons.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxscrollbar.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxdatatable.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxdata.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxcheckbox.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxlistbox.js', false);
+    await _resourcesLoader.loadScriptAsync('packages/grid/src/jq/', 'jqxtreegrid.js', false);
 
     $(this.query).jqxTreeGrid(this.options);
 
