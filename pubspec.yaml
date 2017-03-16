@@ -23,6 +23,8 @@ dev_dependencies:
     yaml: ^2.1.12                         # A parser for YAML. https://pub.dartlang.org/packages/yaml
     master_layout:
       git: http://cm-ylng-msk-04/git/master_layout.frontend.git
+    alert:
+      git: http://cm-ylng-msk-04/git/alert.frontend.git
 
 # Used to configure dart2js or other transformers
 transformers:

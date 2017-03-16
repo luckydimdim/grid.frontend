@@ -1,0 +1,21 @@
+<master-layout>
+	<div class="animated fadeIn">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-block">
+						<grid [dataSource]="ds">
+							<grid-column header='test col 1' field='Id'></grid-column>
+							<grid-column header='test col 2' field='Name'></grid-column>
+							
+							<template let-rowData grid-template="rowexpansion" >
+								rowData: {{rowData}}
+								<call-off-order-details></call-off-order-details>
+							</template>
+						</grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</master-layout>
