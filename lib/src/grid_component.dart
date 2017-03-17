@@ -3,41 +3,15 @@ import 'row_expansion_loader_component.dart';
 import 'row_component.dart';
 import 'column_component.dart';
 import 'datasource.dart';
-
-@Directive(selector: '[grid-template]')
-class GridTemplateDirective {
-  TemplateRef templateRef;
-
-  @Input()
-  String type;
-
-  @Input('grid-template')
-  String templateType;
-
-  GridTemplateDirective(this.templateRef);
-
-}
-
-@Component(selector: 'call-off-order-details')
-@View(template: 'CallOffOrderDetailsComponent!')
-class CallOffOrderDetailsComponent implements AfterContentInit {
-  String Diman;
-
-  @override
-  ngAfterContentInit() {
-    print('CallOffOrderDetailsComponent: $Diman');
-  }
-}
+import 'grid_template_directive.dart';
 
 @Component(selector: 'grid')
-@View(templateUrl: 'grid_component.html',
+@View(
+    templateUrl: 'grid_component.html',
     directives: const [RowComponent, ColumnComponent, RowExpansionLoader])
-class GridComponent
-    implements AfterContentInit {
-
+class GridComponent implements AfterContentInit {
   @ContentChildren(ColumnComponent)
   QueryList<ColumnComponent> columns;
-
 
   @ContentChildren(GridTemplateDirective)
   QueryList<GridTemplateDirective> templates;
@@ -45,19 +19,13 @@ class GridComponent
   TemplateRef rowExpansionTemplate;
 
   @Input()
-  GridDataSource dataSource;
+  DataSource dataSource;
 
   @override
   ngAfterContentInit() {
-    if (columns != null) {
-      print('GridComponent: columns count: ${columns.length}');
-    }
 
     if (templates != null) {
-      print('GridComponent: templates count: ${templates.length}');
-
-      rowExpansionTemplate = templates.first.templateRef;
+      rowExpansionTemplate = templates.first.templateRef; // TODO: шаблонов м.б. несколько. first не подходит
     }
-
   }
 }

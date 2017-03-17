@@ -1,0 +1,8 @@
+<div class="card">
+	<div class="card-header">
+		Наряд заказ
+	</div>
+	<div class="card-block">
+		<input #nameCtrl [(ngModel)]="name" placeholder="Наименование" (keyup)="nameChanged(nameCtrl.value)">
+	</div>
+</div>

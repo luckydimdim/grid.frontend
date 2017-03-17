@@ -8,9 +8,9 @@
 	</thead>
 	<tbody>
 	
-	<template ngFor let-rowData [ngForOf]="dataSource.data" >
+	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" >
 		<tr grid-row [data]="rowData"></tr>
-		<tr row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData"></tr>
+		<tr row-expansion-loader [template]="rowExpansionTemplate" [(rowData)]="dataSource.data[i]"></tr>
 	</template>
 	
 	

@@ -8,5 +8,4 @@ class ColumnComponent {
 
   @Input()
   String field;
-
 }

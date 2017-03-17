@@ -10,9 +10,8 @@ import 'package:resources_loader/resources_loader.dart';
 import 'app_component.dart';
 
 bool get isDebug =>
-  (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) != 'true';
-
-
+    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
+    'true';
 
 main() async {
   if (isDebug) {
@@ -23,7 +22,8 @@ main() async {
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),
-    const Provider(AlertService)]);
+    const Provider(AlertService)
+  ]);
 
   if (isDebug) {
     print('Application in DebugMode');
@@ -31,5 +31,3 @@ main() async {
     print('Unused keys: ${reflector.listUnusedKeys()}');
   }
 }
-
-

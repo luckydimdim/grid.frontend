@@ -8,9 +8,8 @@
 							<grid-column header='test col 1' field='Id'></grid-column>
 							<grid-column header='test col 2' field='Name'></grid-column>
 							
-							<template let-rowData grid-template="rowexpansion" >
-								rowData: {{rowData}}
-								<call-off-order-details></call-off-order-details>
+							<template let-i="index" let-rowApi="rowApi" let-rowData="rowData" grid-template="rowexpansion" >
+							    <call-off-order-details [rowData]="rowData" (rowUpdated)="rowApi.update($event)"></call-off-order-details>
 							</template>
 						</grid>
 					</div>

@@ -1,5 +1,5 @@
-class GridDataSource {
+class DataSource {
   final List data;
 
-  GridDataSource(this.data);
+  DataSource(this.data);
 }
