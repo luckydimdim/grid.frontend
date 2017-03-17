@@ -12,7 +12,7 @@
 		<tr grid-row [data]="rowData"></tr>
 		<tr *ngIf="expandableRows && isRowExpanded(rowData)" >
 			<td [attr.colspan]="visibleColumns().length">
-				<row-expansion-loader [template]="rowExpansionTemplate" [(rowData)]="dataSource.data[i]"></row-expansion-loader>
+				<row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData" (rowUpdated)="updateRow($event,i)"></row-expansion-loader>
 			</td>
 		</tr>
 	</template>

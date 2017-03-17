@@ -80,4 +80,8 @@ class GridComponent implements AfterContentInit {
 
     return columns.toList();
   }
+
+  void updateRow(e, i) {
+    dataSource.data[i] = e;
+  }
 }
