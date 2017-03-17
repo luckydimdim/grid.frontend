@@ -1,3 +1,11 @@
 <td *ngFor="let col of grid.columns">
-	{{resolveFieldData(data,col.field)}}
+	
+	<span *ngIf="col.expander" (click)="toggleRow(data)">
+		 +
+	 </span>
+	
+	 <span *ngIf="!col.expander">
+		 {{resolveFieldData(data,col.field)}}
+	 </span>
+	
 </td>

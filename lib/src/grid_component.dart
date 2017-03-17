@@ -21,11 +21,63 @@ class GridComponent implements AfterContentInit {
   @Input()
   DataSource dataSource;
 
+  @Input()
+  List expandedRows;
+
+  @Input()
+  bool expandableRows;
+
   @override
   ngAfterContentInit() {
 
     if (templates != null) {
       rowExpansionTemplate = templates.first.templateRef; // TODO: шаблонов м.б. несколько. first не подходит
     }
+  }
+
+  toggleRow(dynamic row) {
+
+    if(expandedRows == null) {
+      expandedRows = new List();
+    }
+
+    int expandedRowIndex = findExpandedRowIndex(row);
+
+    if(expandedRowIndex != -1) {
+      expandedRows.remove(row);
+      // развернуто
+    }
+    else {
+      //свернуто
+      expandedRows = new List();
+      expandedRows.add(row);
+    }
+  }
+
+  int findExpandedRowIndex(dynamic row) {
+    int index = -1;
+
+    if(expandedRows != null && expandedRows.length > 0) {
+      for(int i = 0; i < expandedRows.length; i++) {
+        if(expandedRows[i] == row) {
+          index = i;
+          break;
+        }
+      }
+    }
+
+    return index;
+  }
+
+  isRowExpanded(dynamic row) {
+    return findExpandedRowIndex(row) != -1;
+  }
+
+  List<ColumnComponent> visibleColumns() {
+
+    if (this.columns == null)
+      return new List<ColumnComponent>();
+
+    return columns.toList();
   }
 }

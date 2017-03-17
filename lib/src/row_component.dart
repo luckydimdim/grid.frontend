@@ -17,4 +17,9 @@ class RowComponent implements OnInit {
   dynamic resolveFieldData(data, String field) {
     return data[field];
   }
+
+  toggleRow(dynamic row) {
+    grid.toggleRow(row);
+  }
+
 }

@@ -10,7 +10,11 @@
 	
 	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" >
 		<tr grid-row [data]="rowData"></tr>
-		<tr row-expansion-loader [template]="rowExpansionTemplate" [(rowData)]="dataSource.data[i]"></tr>
+		<tr *ngIf="expandableRows && isRowExpanded(rowData)" >
+			<td [attr.colspan]="visibleColumns().length">
+				<row-expansion-loader [template]="rowExpansionTemplate" [(rowData)]="dataSource.data[i]"></row-expansion-loader>
+			</td>
+		</tr>
 	</template>
 	
 	

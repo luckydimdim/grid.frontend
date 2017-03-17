@@ -1,7 +1,7 @@
 import 'package:angular2/core.dart';
 import 'row_api.dart';
 
-@Component(selector: '[row-expansion-loader]')
+@Component(selector: 'row-expansion-loader')
 @View(template: '')
 class RowExpansionLoader implements OnInit {
   @Input()

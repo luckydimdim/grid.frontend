@@ -8,4 +8,7 @@ class ColumnComponent {
 
   @Input()
   String field;
+
+  @Input()
+  bool expander =false;
 }
