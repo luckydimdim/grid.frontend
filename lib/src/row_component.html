@@ -1,11 +1,13 @@
 <td *ngFor="let col of grid.columns">
-	
-	<span *ngIf="col.expander" (click)="toggleRow(data)">
-		 +
-	 </span>
-	
-	 <span *ngIf="!col.expander">
+
+
+    <a *ngIf="col.expander" (click)="grid.toggleRow(data)">
+        <span class="fa fa-fw ui-c"
+              [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></span>
+    </a>
+
+    <span *ngIf="!col.expander">
 		 {{resolveFieldData(data,col.field)}}
 	 </span>
-	
+
 </td>

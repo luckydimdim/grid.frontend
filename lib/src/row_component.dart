@@ -18,8 +18,4 @@ class RowComponent implements OnInit {
     return data[field];
   }
 
-  toggleRow(dynamic row) {
-    grid.toggleRow(row);
-  }
-
 }
