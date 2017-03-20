@@ -17,5 +17,4 @@ class RowComponent implements OnInit {
   dynamic resolveFieldData(data, String field) {
     return data[field];
   }
-
 }

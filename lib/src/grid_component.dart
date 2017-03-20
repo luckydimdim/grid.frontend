@@ -33,25 +33,23 @@ class GridComponent implements AfterContentInit {
 
   @override
   ngAfterContentInit() {
-
     if (templates != null) {
-      rowExpansionTemplate = templates.first.templateRef; // TODO: шаблонов м.б. несколько. first не подходит
+      rowExpansionTemplate = templates.first
+          .templateRef; // TODO: шаблонов м.б. несколько. first не подходит
     }
   }
 
   toggleRow(dynamic row) {
-
-    if(expandedRows == null) {
+    if (expandedRows == null) {
       expandedRows = new List();
     }
 
     int expandedRowIndex = findExpandedRowIndex(row);
 
-    if(expandedRowIndex != -1) {
+    if (expandedRowIndex != -1) {
       expandedRows.remove(row);
       // развернуто
-    }
-    else {
+    } else {
       //свернуто
       expandedRows = new List();
       expandedRows.add(row);
@@ -61,9 +59,9 @@ class GridComponent implements AfterContentInit {
   int findExpandedRowIndex(dynamic row) {
     int index = -1;
 
-    if(expandedRows != null && expandedRows.length > 0) {
-      for(int i = 0; i < expandedRows.length; i++) {
-        if(expandedRows[i] == row) {
+    if (expandedRows != null && expandedRows.length > 0) {
+      for (int i = 0; i < expandedRows.length; i++) {
+        if (expandedRows[i] == row) {
           index = i;
           break;
         }
@@ -78,9 +76,7 @@ class GridComponent implements AfterContentInit {
   }
 
   List<ColumnComponent> visibleColumns() {
-
-    if (this.columns == null)
-      return new List<ColumnComponent>();
+    if (this.columns == null) return new List<ColumnComponent>();
 
     return columns.toList();
   }

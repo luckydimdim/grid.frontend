@@ -35,7 +35,6 @@ class RowExpansionLoader implements OnInit, OnDestroy {
     if (_viewRef != null) {
       _viewRef.destroy();
     }
-
   }
 
   void updateRow(dynamic rowData) {

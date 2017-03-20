@@ -10,5 +10,5 @@ class ColumnComponent {
   String field;
 
   @Input()
-  bool expander =false;
+  bool expander = false;
 }

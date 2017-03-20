@@ -1,4 +1,1 @@
-enum SortMode{
-  single,
-  multiple
-}
+enum SortMode { single, multiple }
