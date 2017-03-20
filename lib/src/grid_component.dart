@@ -4,6 +4,7 @@ import 'row_component.dart';
 import 'column_component.dart';
 import 'datasource.dart';
 import 'grid_template_directive.dart';
+import 'enums.dart';
 
 @Component(selector: 'grid')
 @View(
@@ -26,6 +27,9 @@ class GridComponent implements AfterContentInit {
 
   @Input()
   bool expandableRows;
+
+  @Input()
+  SortMode sortMode;
 
   @override
   ngAfterContentInit() {
