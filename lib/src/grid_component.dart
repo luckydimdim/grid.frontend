@@ -1,4 +1,4 @@
-import 'package:angular2/core.dart';
+﻿import 'package:angular2/core.dart';
 import 'row_expansion_loader_component.dart';
 import 'row_component.dart';
 import 'column_component.dart';
@@ -10,7 +10,8 @@ import 'enums.dart';
 @View(
     templateUrl: 'grid_component.html',
     directives: const [RowComponent, ColumnComponent, RowExpansionLoader])
-class GridComponent implements AfterContentInit {
+class GridComponent
+    implements AfterContentInit {
   @ContentChildren(ColumnComponent)
   QueryList<ColumnComponent> columns;
 
@@ -40,28 +41,39 @@ class GridComponent implements AfterContentInit {
   }
 
   toggleRow(dynamic row) {
-    if (expandedRows == null) {
+    if(expandedRows == null) {
       expandedRows = new List();
+    }
+
+    var key = row;
+
+    if (dataSource.primaryField != null) {
+      key = row[dataSource.primaryField];
     }
 
     int expandedRowIndex = findExpandedRowIndex(row);
 
-    if (expandedRowIndex != -1) {
-      expandedRows.remove(row);
+    if(expandedRowIndex != -1) {
+      expandedRows.remove(key);
       // развернуто
     } else {
       //свернуто
       expandedRows = new List();
-      expandedRows.add(row);
+      expandedRows.add(key);
     }
   }
 
   int findExpandedRowIndex(dynamic row) {
     int index = -1;
 
-    if (expandedRows != null && expandedRows.length > 0) {
-      for (int i = 0; i < expandedRows.length; i++) {
-        if (expandedRows[i] == row) {
+    var key = row;
+    if (dataSource.primaryField != null) {
+      key = row[dataSource.primaryField];
+    }
+
+    if(expandedRows != null && expandedRows.length > 0) {
+      for(int i = 0; i < expandedRows.length; i++) {
+        if (expandedRows[i] == key) {
           index = i;
           break;
         }
