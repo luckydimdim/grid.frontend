@@ -41,19 +41,15 @@ class GridComponent
   }
 
   toggleRow(dynamic row) {
-    if(expandedRows == null) {
+    if (expandedRows == null) {
       expandedRows = new List();
     }
 
-    var key = row;
-
-    if (dataSource.primaryField != null) {
-      key = row[dataSource.primaryField];
-    }
+    var key = _getKey(row);
 
     int expandedRowIndex = findExpandedRowIndex(row);
 
-    if(expandedRowIndex != -1) {
+    if (expandedRowIndex != -1) {
       expandedRows.remove(key);
       // развернуто
     } else {
@@ -63,16 +59,24 @@ class GridComponent
     }
   }
 
-  int findExpandedRowIndex(dynamic row) {
-    int index = -1;
+  dynamic _getKey(dynamic row) {
 
     var key = row;
+
     if (dataSource.primaryField != null) {
       key = row[dataSource.primaryField];
     }
 
-    if(expandedRows != null && expandedRows.length > 0) {
-      for(int i = 0; i < expandedRows.length; i++) {
+    return key;
+  }
+
+  int findExpandedRowIndex(dynamic row) {
+    int index = -1;
+
+    var key = _getKey(row);
+
+    if (expandedRows != null && expandedRows.length > 0) {
+      for (int i = 0; i < expandedRows.length; i++) {
         if (expandedRows[i] == key) {
           index = i;
           break;
@@ -96,4 +100,9 @@ class GridComponent
   void updateRow(e, i) {
     dataSource.data[i] = e;
   }
+
+  trackByFn(index, item) {
+    return _getKey(item);
+  }
+
 }

@@ -8,7 +8,7 @@
 	</thead>
 	<tbody>
 	
-	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" >
+	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" [ngForTrackBy] = "trackByFn">
 		<tr grid-row [data]="rowData"></tr>
 		<tr *ngIf="expandableRows && isRowExpanded(rowData)" >
 			<td [attr.colspan]="visibleColumns().length">
