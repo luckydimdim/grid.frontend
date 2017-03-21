@@ -1,8 +1,9 @@
 import 'package:angular2/core.dart';
 import 'grid_component.dart';
+import 'column_body_template_loader_component.dart';
 
 @Component(selector: '[grid-row]')
-@View(templateUrl: 'row_component.html')
+@View(templateUrl: 'row_component.html', directives: const[ColumnBodyTemplateLoader])
 class RowComponent implements OnInit {
   final GridComponent grid;
 

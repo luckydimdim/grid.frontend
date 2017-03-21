@@ -1,5 +1,6 @@
 ﻿import 'package:angular2/core.dart';
 import 'row_expansion_loader_component.dart';
+import 'column_body_template_loader_component.dart';
 import 'row_component.dart';
 import 'column_component.dart';
 import 'datasource.dart';
@@ -9,9 +10,10 @@ import 'enums.dart';
 @Component(selector: 'grid')
 @View(
     templateUrl: 'grid_component.html',
-    directives: const [RowComponent, ColumnComponent, RowExpansionLoader])
+    directives: const [RowComponent, ColumnComponent, RowExpansionLoader, ColumnBodyTemplateLoader, GridTemplateDirective])
 class GridComponent
     implements AfterContentInit {
+
   @ContentChildren(ColumnComponent)
   QueryList<ColumnComponent> columns;
 
@@ -35,8 +37,13 @@ class GridComponent
   @override
   ngAfterContentInit() {
     if (templates != null) {
-      rowExpansionTemplate = templates.first
-          .templateRef; // TODO: шаблонов м.б. несколько. first не подходит
+      for (GridTemplateDirective template in templates) {
+
+        if (template.templateType == 'rowexpansion') {
+          rowExpansionTemplate = template.templateRef;
+        }
+
+      }
     }
   }
 
@@ -51,9 +58,7 @@ class GridComponent
 
     if (expandedRowIndex != -1) {
       expandedRows.remove(key);
-      // развернуто
     } else {
-      //свернуто
       expandedRows = new List();
       expandedRows.add(key);
     }
