@@ -1,15 +1,15 @@
 <td *ngFor="let col of grid.columns">
-	
-	
-	<a *ngIf="col.expander" (click)="grid.toggleRow(data)">
-        <span class="fa fa-fw ui-c"
+
+
+  <a *ngIf="col.expander" (click)="grid.toggleRow(data)">
+        <span class="fa fa-fw ui-c cursor-pointer"
               [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></span>
-	</a>
-	
-	<span *ngIf="!col.expander && col.bodyTemplate === null">
+  </a>
+
+  <span *ngIf="!col.expander && col.bodyTemplate === null">
 		 {{resolveFieldData(data,col.field)}}
 	</span>
-	<span *ngIf="!col.expander && col.bodyTemplate !== null">
+  <span *ngIf="!col.expander && col.bodyTemplate !== null">
         <column-body-template-loader [column]="col" [rowData]="data"></column-body-template-loader>
 	</span>
 
