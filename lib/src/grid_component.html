@@ -1,4 +1,4 @@
-<table class="table table-condensed table-striped table-hover">
+<table class="table table-condensed table-striped table-hover table-bordered">
 	<thead>
 	<tr>
 		<th *ngFor="let col of columns" [ngStyle]="col.style" [class]="col.styleClass" [attr.width]="col.width">
@@ -10,7 +10,7 @@
 	
 	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" [ngForTrackBy]="trackByFn">
 		<tr grid-row [data]="rowData"></tr>
-		<tr *ngIf="expandableRows && isRowExpanded(rowData)">
+		<tr style="background-color: #f6f6f6" *ngIf="expandableRows && isRowExpanded(rowData)">
 			<td [attr.colspan]="visibleColumns().length">
 				<row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData"
 				                      (rowUpdated)="updateRow($event,i)"></row-expansion-loader>
