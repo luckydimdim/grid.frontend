@@ -1,10 +1,7 @@
 ﻿<td *ngFor="let col of grid.columns">
-	
-	
-	<a href="javascript:void(0);" *ngIf="col.expander" (click)="grid.toggleRow(data)">
-        <span class="fa fa-fw ui-c cursor-pointer"
-              [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></span>
-	</a>
+  
+  <button class="btn btn-tiny" *ngIf="col.expander" (click)="grid.toggleRow(data)">
+    <i class="fa" [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></i></button>
 	
 	<span *ngIf="!col.expander && col.bodyTemplate === null">
 		 {{resolveFieldData(data,col.field)}}
