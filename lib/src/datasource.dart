@@ -1,5 +1,5 @@
 class DataSource {
-  final List data;
+  List data = new List();
 
   /**
    * Поле, в котором лежит уникальный ID строк
