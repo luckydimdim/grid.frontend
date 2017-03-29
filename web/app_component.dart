@@ -28,6 +28,6 @@ class AppComponent {
     orders.add(o1);
     orders.add(o2);
 
-    ds = new DataSource(orders);
+    ds = new DataSource(data: orders);
   }
 }
