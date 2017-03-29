@@ -6,5 +6,5 @@ class DataSource {
    */
   String primaryField;
 
-  DataSource(this.data);
+  DataSource({this.data});
 }
