@@ -23,6 +23,9 @@ class GridComponent
   TemplateRef rowExpansionTemplate;
 
   @Input()
+  String tableStyleClass;
+
+  @Input()
   DataSource dataSource;
 
   @Input()
