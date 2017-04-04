@@ -123,12 +123,12 @@ class GridComponent
   }
 
   void handleRowClick(MouseEvent event, dynamic rowData) {
-    String targetName = event.target.toString().toUpperCase();
+    //String targetName = event.target.toString().toUpperCase();
 
-    if (targetName == 'TD' || targetName == 'SPAN') {
+    //if (targetName == 'TD' || targetName == 'SPAN') {
       // Событие не кидаем если, например, кликнули по кнопке в строке
       onRowClick.emit(rowData);
-    }
+    //}
   }
 
 }
