@@ -30,4 +30,9 @@ class AppComponent {
 
     ds = new DataSource(data: orders);
   }
+
+  rowClicked(dynamic rowData) {
+    print('rowClicked! rowData: $rowData');
+  }
+
 }

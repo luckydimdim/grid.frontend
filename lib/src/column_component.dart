@@ -27,6 +27,7 @@ class ColumnComponent implements AfterContentInit {
   QueryList<GridTemplateDirective> templates;
 
   TemplateRef bodyTemplate;
+  TemplateRef headerTemplate;
 
   @override
   ngAfterContentInit() {
@@ -35,6 +36,9 @@ class ColumnComponent implements AfterContentInit {
 
         if (template.templateType == 'body') {
           bodyTemplate = template.templateRef;
+        }
+        else if (template.templateType == 'header') {
+          headerTemplate = template.templateRef;
         }
 
       }

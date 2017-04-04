@@ -5,6 +5,7 @@ import 'package:angular2/src/core/reflection/reflection.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/platform/common.dart';
 import 'package:alert/alert_service.dart';
+import 'package:aside/aside_service.dart';
 
 import 'package:resources_loader/resources_loader.dart';
 import 'app_component.dart';
@@ -22,7 +23,8 @@ main() async {
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),
-    const Provider(AlertService)
+    const Provider(AlertService),
+    const Provider(AsideService),
   ]);
 
   if (isDebug) {

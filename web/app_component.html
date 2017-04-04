@@ -4,8 +4,12 @@
 			<div class="col-xl-12">
 				<div class="card">
 					<div class="card-block">
-						<grid [dataSource]="ds" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
-							<grid-column [expander]="true"></grid-column>
+						<grid [dataSource]="ds" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'" (onRowClick)="rowClicked($event)">
+							<grid-column [expander]="true">
+								<template let-col="column" grid-template="header">
+									templation {{col.expander}}
+								</template>
+							</grid-column>
 							<grid-column header="test col 1" field="Id"></grid-column>
 							<grid-column header="test col 2" field="Name"></grid-column>
 							

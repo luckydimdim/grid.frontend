@@ -1,4 +1,6 @@
-﻿import 'package:angular2/core.dart';
+﻿import 'dart:html';
+import 'package:angular2/core.dart';
+import 'column_header_template_loader_component.dart';
 import 'row_expansion_loader_component.dart';
 import 'column_body_template_loader_component.dart';
 import 'row_component.dart';
@@ -10,7 +12,14 @@ import 'enums.dart';
 @Component(selector: 'grid')
 @View(
     templateUrl: 'grid_component.html',
-    directives: const [RowComponent, ColumnComponent, RowExpansionLoader, ColumnBodyTemplateLoader, GridTemplateDirective])
+    directives: const [
+      RowComponent,
+      ColumnComponent,
+      RowExpansionLoader,
+      ColumnBodyTemplateLoader,
+      GridTemplateDirective,
+      ColumnHeaderTemplateLoader
+    ])
 class GridComponent
     implements AfterContentInit {
 
@@ -37,15 +46,16 @@ class GridComponent
   @Input()
   SortMode sortMode;
 
+  @Output()
+  EventEmitter<dynamic> onRowClick = new EventEmitter<dynamic>();
+
   @override
   ngAfterContentInit() {
     if (templates != null) {
       for (GridTemplateDirective template in templates) {
-
         if (template.templateType == 'rowexpansion') {
           rowExpansionTemplate = template.templateRef;
         }
-
       }
     }
   }
@@ -68,7 +78,6 @@ class GridComponent
   }
 
   dynamic _getKey(dynamic row) {
-
     var key = row;
 
     if (dataSource.primaryField != null) {
@@ -111,6 +120,15 @@ class GridComponent
 
   trackByFn(index, item) {
     return _getKey(item);
+  }
+
+  void handleRowClick(MouseEvent event, dynamic rowData) {
+    String targetName = event.target.toString().toUpperCase();
+
+    if (targetName == 'TD' || targetName == 'SPAN') {
+      // Событие не кидаем если, например, кликнули по кнопке в строке
+      onRowClick.emit(rowData);
+    }
   }
 
 }
