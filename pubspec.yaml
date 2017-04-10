@@ -40,4 +40,3 @@ transformers:
         - --trust-type-annotations
         - --trust-primitives
         - --show-package-warnings # Show warnings and hints generated from packages.
-        - --enable-experimental-mirrors
