@@ -9,9 +9,7 @@ import 'datasource.dart';
 import 'grid_template_directive.dart';
 import 'enums.dart';
 
-@Component(selector: 'grid')
-@View(
-    templateUrl: 'grid_component.html',
+@Component(selector: 'grid', templateUrl: 'grid_component.html',
     directives: const [
       RowComponent,
       ColumnComponent,

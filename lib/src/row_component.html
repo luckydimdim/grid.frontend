@@ -1,15 +1,13 @@
-﻿<tr>
-	<td *ngFor="let col of grid.columns">
+﻿<td *ngFor="let col of grid.columns">
+
+  <button class="btn btn-tiny" *ngIf="col.expander" (click)="grid.toggleRow(data)">
+    <i class="fa" [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></i></button>
 	
-	  <button class="btn btn-tiny" *ngIf="col.expander" (click)="grid.toggleRow(data)">
-	    <i class="fa" [ngClass]="{'fa-chevron-circle-down':grid.isRowExpanded(data), 'fa-chevron-circle-right': !grid.isRowExpanded(data)}"></i></button>
-		
-		<span *ngIf="!col.expander && col.bodyTemplate === null">
-			{{resolveFieldData(data,col.field)}}
-		</span>
-		<span *ngIf="!col.expander && col.bodyTemplate !== null">
-			<column-body-template-loader [column]="col" [rowData]="data"></column-body-template-loader>
-		</span>
-	
-	</td>
-</tr>
+	<span *ngIf="!col.expander && col.bodyTemplate === null">
+		{{resolveFieldData(data,col.field)}}
+	</span>
+	<span *ngIf="!col.expander && col.bodyTemplate !== null">
+		<column-body-template-loader [column]="col" [rowData]="data"></column-body-template-loader>
+	</span>
+
+</td>
