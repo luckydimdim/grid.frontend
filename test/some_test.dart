@@ -23,22 +23,48 @@ class MockInjectableService implements InjectableService {
   }
 }
 
+String _tagNameFromComponentSelector(String selector) {
+  int pos = selector.indexOf(':');
+
+  print('1. pos = $pos selector = $selector');
+
+  if (pos != -1) selector = selector.substring(0, pos);
+
+  print('2. pos = $pos selector = $selector');
+
+  pos = selector.indexOf('[');
+
+  print('3. pos = $pos selector = $selector');
+
+  if (pos != -1) selector = selector.substring(0, pos);
+
+  print('4. pos = $pos selector = $selector');
+
+  pos = selector.indexOf('(');
+
+  print('5. pos = $pos selector = $selector');
+
+  if (pos != -1) selector = selector.substring(0, pos);
+
+  print('6. pos = $pos selector = $selector');
+
+  // Some users have invalid space before selector in @Component, trim so
+  // that document.createElement call doesn't fail.
+  return selector.trim();
+}
+
 main() {
   allowRuntimeReflection();
 
   group('test group', () {
-    Injector inj;
+
 
     setUp(() {
-      inj = ReflectiveInjector.resolveAndCreate([
-        SomeComponent,
-        provide(InjectableService, useClass: MockInjectableService)
-      ]);
+
     });
 
     test('some test', () {
-      SomeComponent testSubject = inj.get(SomeComponent);
-      expect(testSubject._injectableService.someMethod(), true);
+      print(_tagNameFromComponentSelector('123[[123]]'));
     });
   });
 }
