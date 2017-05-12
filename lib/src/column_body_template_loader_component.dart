@@ -3,7 +3,7 @@ import 'column_component.dart';
 
 @Component(selector: 'column-body-template-loader')
 @View(template: '')
-class ColumnBodyTemplateLoader implements OnInit, OnDestroy {
+class ColumnBodyTemplateLoader implements OnInit, OnDestroy, OnChanges {
   @Input()
   ColumnComponent column;
 
@@ -27,6 +27,14 @@ class ColumnBodyTemplateLoader implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (_viewRef != null) {
       _viewRef.destroy();
+    }
+  }
+
+  @override
+  ngOnChanges(Map<String, SimpleChange> changes){
+    if (_viewRef != null) {
+      _viewRef.setLocal('rowData', rowData);
+      _viewRef.setLocal('column', column);
     }
   }
 

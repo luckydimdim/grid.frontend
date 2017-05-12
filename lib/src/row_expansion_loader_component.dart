@@ -3,7 +3,7 @@ import 'row_api.dart';
 
 @Component(selector: 'row-expansion-loader')
 @View(template: '')
-class RowExpansionLoader implements OnInit, OnDestroy {
+class RowExpansionLoader implements OnInit, OnDestroy, OnChanges {
   @Input()
   TemplateRef template;
 
@@ -39,5 +39,12 @@ class RowExpansionLoader implements OnInit, OnDestroy {
 
   void updateRow(dynamic rowData) {
     rowUpdated.emit(rowData);
+  }
+
+  @override
+  ngOnChanges(Map<String, SimpleChange> changes){
+    if (_viewRef != null) {
+      _viewRef.setLocal('rowData', rowData);
+    }
   }
 }

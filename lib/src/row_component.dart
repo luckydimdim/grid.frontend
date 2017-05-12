@@ -11,8 +11,13 @@ class RowComponent implements OnInit {
 
   RowComponent(@Inject(GridComponent) this.grid) {}
 
+  @ViewChild(ColumnBodyTemplateLoader)
+  ColumnBodyTemplateLoader loader;
+
   @override
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   dynamic resolveFieldData(data, String field) {
     return data[field];
