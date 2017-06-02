@@ -17,7 +17,7 @@
 		
 		<tr style="background-color: #f6f6f6" *ngIf="expandableRows != null && expandableRows && isRowExpanded(rowData)">
 			<td [attr.colspan]="visibleColumns().length">
-				<row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData"
+				<row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData" [creatingMode]="isRowInCreatingMode(rowData)"
 				                      (rowUpdated)="updateRow($event,i)"></row-expansion-loader>
 			</td>
 		</tr>

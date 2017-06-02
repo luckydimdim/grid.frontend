@@ -39,6 +39,9 @@ class GridComponent
   List expandedRows;
 
   @Input()
+  List creatingModeRows;
+
+  @Input()
   bool expandableRows;
 
   @Input()
@@ -75,6 +78,23 @@ class GridComponent
     }
   }
 
+  toggleCreatingMode(dynamic row) {
+    if (creatingModeRows == null) {
+      creatingModeRows = new List();
+    }
+
+    var key = _getKey(row);
+
+    int creatingModeRowIndex = findCreatingModeRowIndex(row);
+
+    if (creatingModeRowIndex != -1) {
+      creatingModeRows.remove(key);
+    } else {
+      creatingModeRows = new List();
+      creatingModeRows.add(key);
+    }
+  }
+
   dynamic _getKey(dynamic row) {
     var key = row;
 
@@ -102,8 +122,29 @@ class GridComponent
     return index;
   }
 
+  int findCreatingModeRowIndex(dynamic row) {
+    int index = -1;
+
+    var key = _getKey(row);
+
+    if (creatingModeRows != null && creatingModeRows.length > 0) {
+      for (int i = 0; i < creatingModeRows.length; i++) {
+        if (creatingModeRows[i] == key) {
+          index = i;
+          break;
+        }
+      }
+    }
+
+    return index;
+  }
+
   isRowExpanded(dynamic row) {
     return findExpandedRowIndex(row) != -1;
+  }
+
+  isRowInCreatingMode(dynamic row) {
+    return findCreatingModeRowIndex(row) != -1;
   }
 
   List<ColumnComponent> visibleColumns() {

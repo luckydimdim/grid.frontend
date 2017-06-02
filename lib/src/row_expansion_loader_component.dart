@@ -10,6 +10,9 @@ class RowExpansionLoader implements OnInit, OnDestroy, OnChanges {
   @Input()
   dynamic rowData;
 
+  @Input()
+  bool creatingMode;
+
   @Output()
   final rowUpdated = new EventEmitter<dynamic>();
 
@@ -24,6 +27,7 @@ class RowExpansionLoader implements OnInit, OnDestroy, OnChanges {
     var rowApi = new RowApi();
 
     rowApi.update = (d) => updateRow(d);
+    rowApi.creatingMode = creatingMode;
 
     _viewRef = _viewContainerRef.createEmbeddedView(template);
     _viewRef.setLocal('rowData', rowData);
