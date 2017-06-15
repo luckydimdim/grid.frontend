@@ -8,6 +8,7 @@ import 'column_component.dart';
 import 'datasource.dart';
 import 'grid_template_directive.dart';
 import 'enums.dart';
+import 'package:angular_utils/directives.dart';
 
 @Component(selector: 'grid', templateUrl: 'grid_component.html',
     directives: const [
@@ -16,7 +17,8 @@ import 'enums.dart';
       RowExpansionLoader,
       ColumnBodyTemplateLoader,
       GridTemplateDirective,
-      ColumnHeaderTemplateLoader
+      ColumnHeaderTemplateLoader,
+      CmLoadingSpinComponent
     ])
 class GridComponent
     implements AfterContentInit {
