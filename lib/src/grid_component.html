@@ -1,31 +1,33 @@
 <table [class]="tableStyleClass ?? 'table'">
-	<thead>
-	<tr>
-		<th *ngFor="let col of columns" [ngStyle]="col.style" [class]="col.styleClass ?? ''" [attr.width]="col.width ?? ''">
-			 <span *ngIf="col.headerTemplate == null">{{col.header}}</span>
-			<span *ngIf="col.headerTemplate != null">
+  <thead>
+  <tr>
+    <th *ngFor="let col of columns" [ngStyle]="col.style" [class]="col.styleClass ?? ''" [attr.width]="col.width ?? ''">
+      <span *ngIf="col.headerTemplate == null">{{col.header}}</span>
+      <span *ngIf="col.headerTemplate != null">
 				<column-header-template-loader [column]="col"></column-header-template-loader>
 			</span>
-		</th>
-	</tr>
-	</thead>
-	<tbody>
-	
-	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" [ngForTrackBy]="trackByFn" *ngIf="dataSource != null">
-		
-		<tr grid-row [data]="rowData" (click)="handleRowClick($event, rowData)"></tr>
-		
-		<tr style="background-color: #f6f6f6" *ngIf="expandableRows != null && expandableRows && isRowExpanded(rowData)">
-			<td [attr.colspan]="visibleColumns().length">
-				<row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData" [creatingMode]="isRowInCreatingMode(rowData)"
-				                      (rowUpdated)="updateRow($event,i)"></row-expansion-loader>
-			</td>
-		</tr>
-	</template>
-	
-	
-	</tbody>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" [ngForTrackBy]="trackByFn"
+            *ngIf="dataSource != null">
+
+    <tr grid-row [data]="rowData" (click)="handleRowClick($event, rowData)"></tr>
+
+    <tr style="background-color: #f6f6f6" *ngIf="expandableRows != null && expandableRows && isRowExpanded(rowData)">
+      <td [attr.colspan]="visibleColumns().length">
+        <row-expansion-loader [template]="rowExpansionTemplate" [rowData]="rowData"
+                              [creatingMode]="isRowInCreatingMode(rowData)"
+                              (rowUpdated)="updateRow($event,i)"></row-expansion-loader>
+      </td>
+    </tr>
+  </template>
+
+
+  </tbody>
 </table>
-<div style="border:1px solid gray" *ngIf="dataSource == null">
-	<loading-spin></loading-spin>
+<div *ngIf="dataSource == null" class="grid-loading-spin">
+  <loading-spin></loading-spin>
 </div>
