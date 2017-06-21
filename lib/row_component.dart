@@ -1,1 +1,1 @@
-export 'src/row_component.dart';
+export 'src/row/row_component.dart';

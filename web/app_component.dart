@@ -9,14 +9,16 @@ import 'package:grid/grid_template_directive.dart';
 
 import 'call_off_order_details_component.dart';
 
-@Component(selector: 'app')
-@View(templateUrl: 'app_component.html', directives: const [
-  MasterLayoutComponent,
-  GridComponent,
-  ColumnComponent,
-  GridTemplateDirective,
-  CallOffOrderDetailsComponent
-])
+@Component(
+    selector: 'app',
+    templateUrl: 'app_component.html',
+    directives: const [
+      MasterLayoutComponent,
+      GridComponent,
+      ColumnComponent,
+      GridTemplateDirective,
+      CallOffOrderDetailsComponent
+    ])
 class AppComponent {
   DataSource ds;
 
@@ -34,5 +36,4 @@ class AppComponent {
   rowClicked(dynamic rowData) {
     print('rowClicked! rowData: $rowData');
   }
-
 }

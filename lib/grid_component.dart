@@ -1,1 +1,1 @@
-export 'src/grid_component.dart';
+export 'src/grid/grid_component.dart';

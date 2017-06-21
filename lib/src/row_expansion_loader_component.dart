@@ -1,8 +1,7 @@
 import 'package:angular2/core.dart';
 import 'row_api.dart';
 
-@Component(selector: 'row-expansion-loader')
-@View(template: '')
+@Component(selector: 'row-expansion-loader', template: '')
 class RowExpansionLoader implements OnInit, OnDestroy, OnChanges {
   @Input()
   TemplateRef template;
@@ -46,7 +45,7 @@ class RowExpansionLoader implements OnInit, OnDestroy, OnChanges {
   }
 
   @override
-  ngOnChanges(Map<String, SimpleChange> changes){
+  ngOnChanges(Map<String, SimpleChange> changes) {
     if (_viewRef != null) {
       _viewRef.setLocal('rowData', rowData);
     }

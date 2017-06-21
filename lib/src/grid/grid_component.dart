@@ -1,16 +1,20 @@
-﻿import 'dart:html';
+import 'dart:async';
+import 'dart:html';
 import 'package:angular2/core.dart';
-import 'column_header_template_loader_component.dart';
-import 'row_expansion_loader_component.dart';
-import 'column_body_template_loader_component.dart';
-import 'row_component.dart';
-import 'column_component.dart';
-import 'datasource.dart';
-import 'grid_template_directive.dart';
-import 'enums.dart';
+import '../column_header_template_loader_component.dart';
+import '../row_expansion_loader_component.dart';
+import '../column_body_template_loader_component.dart';
+import '../row/row_component.dart';
+import '../column_component.dart';
+import '../datasource.dart';
+import '../grid_template_directive.dart';
+import '../enums.dart';
+import '../column_headers/column_headers_component.dart';
 import 'package:angular_utils/directives.dart';
 
-@Component(selector: 'grid', templateUrl: 'grid_component.html',
+@Component(
+    selector: 'grid',
+    templateUrl: 'grid_component.html',
     directives: const [
       RowComponent,
       ColumnComponent,
@@ -18,11 +22,10 @@ import 'package:angular_utils/directives.dart';
       ColumnBodyTemplateLoader,
       GridTemplateDirective,
       ColumnHeaderTemplateLoader,
-      CmLoadingSpinComponent
+      CmLoadingSpinComponent,
+      ColumnHeadersComponent
     ])
-class GridComponent
-    implements AfterContentInit {
-
+class GridComponent implements AfterContentInit {
   @ContentChildren(ColumnComponent)
   QueryList<ColumnComponent> columns;
 
@@ -50,7 +53,9 @@ class GridComponent
   SortMode sortMode;
 
   @Output()
-  EventEmitter<dynamic> onRowClick = new EventEmitter<dynamic>();
+  Stream get onRowClick => _onRowClick.stream;
+
+  final StreamController _onRowClick = new StreamController.broadcast();
 
   @override
   ngAfterContentInit() {
@@ -167,9 +172,8 @@ class GridComponent
     //String targetName = event.target.toString().toUpperCase();
 
     //if (targetName == 'TD' || targetName == 'SPAN') {
-      // Событие не кидаем если, например, кликнули по кнопке в строке
-      onRowClick.emit(rowData);
+    // Событие не кидаем если, например, кликнули по кнопке в строке
+    _onRowClick.add(rowData);
     //}
   }
-
 }

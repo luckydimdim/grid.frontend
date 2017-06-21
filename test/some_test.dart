@@ -11,11 +11,7 @@ class InjectableService {
 }
 
 @Injectable()
-class SomeComponent {
-  final InjectableService _injectableService;
-
-  SomeComponent(this._injectableService);
-}
+class SomeComponent {}
 
 class MockInjectableService implements InjectableService {
   bool someMethod() {
@@ -57,11 +53,7 @@ main() {
   allowRuntimeReflection();
 
   group('test group', () {
-
-
-    setUp(() {
-
-    });
+    setUp(() {});
 
     test('some test', () {
       print(_tagNameFromComponentSelector('123[[123]]'));

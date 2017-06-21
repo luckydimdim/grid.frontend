@@ -2,8 +2,10 @@ import 'package:angular2/core.dart';
 import 'grid_template_directive.dart';
 import 'column_body_template_loader_component.dart';
 
-@Component(selector: 'grid-column')
-@View(template: '', directives: const[ColumnBodyTemplateLoader])
+@Component(
+    selector: 'grid-column',
+    template: '',
+    directives: const [ColumnBodyTemplateLoader])
 class ColumnComponent implements AfterContentInit {
   @Input()
   String header;
@@ -33,16 +35,12 @@ class ColumnComponent implements AfterContentInit {
   ngAfterContentInit() {
     if (templates != null) {
       for (GridTemplateDirective template in templates) {
-
         if (template.templateType == 'body') {
           bodyTemplate = template.templateRef;
-        }
-        else if (template.templateType == 'header') {
+        } else if (template.templateType == 'header') {
           headerTemplate = template.templateRef;
         }
-
       }
     }
   }
-
 }

@@ -1,8 +1,9 @@
 import 'dart:core';
 import 'package:angular2/core.dart';
 
-@Component(selector: 'call-off-order-details')
-@View(templateUrl: 'call_off_order_details_component.html')
+@Component(
+    selector: 'call-off-order-details',
+    templateUrl: 'call_off_order_details_component.html')
 class CallOffOrderDetailsComponent implements AfterContentInit {
   @Input()
   dynamic rowData;

@@ -1,0 +1,8 @@
+<template ngFor let-col [ngForOf]="columns">
+	<th [ngStyle]="col.style" [class]="col.styleClass ?? ''" [attr.width]="col.width ?? ''">
+		<span *ngIf="col.headerTemplate == null">{{col.header}}</span>
+		<span *ngIf="col.headerTemplate != null">
+				<column-header-template-loader [column]="col"></column-header-template-loader>
+			</span>
+	</th>
+</template>

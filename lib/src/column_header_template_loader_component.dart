@@ -1,8 +1,7 @@
 import 'package:angular2/core.dart';
 import 'column_component.dart';
 
-@Component(selector: 'column-header-template-loader')
-@View(template: '')
+@Component(selector: 'column-header-template-loader', template: '')
 class ColumnHeaderTemplateLoader implements OnInit, OnDestroy, OnChanges {
   @Input()
   ColumnComponent column;
@@ -27,7 +26,7 @@ class ColumnHeaderTemplateLoader implements OnInit, OnDestroy, OnChanges {
   }
 
   @override
-  ngOnChanges(Map<String, SimpleChange> changes){
+  ngOnChanges(Map<String, SimpleChange> changes) {
     if (_viewRef != null) {
       _viewRef.setLocal('column', column);
     }
