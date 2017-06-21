@@ -281,6 +281,8 @@ class GridComponent implements AfterContentInit {
         result = 0;
       else if (value1 is String && value2 is String) {
         result = (value1 as String).compareTo(value2);
+      } else if (value1 is DateTime && value2 is DateTime) {
+        result = (value1 as DateTime).compareTo(value2);
       } else {
         result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
       }

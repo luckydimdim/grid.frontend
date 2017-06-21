@@ -29,7 +29,7 @@ class ColumnComponent implements AfterContentInit {
   String width;
 
   @Input()
-  bool sortable = false;
+  bool sortable = true;
 
   @ContentChildren(GridTemplateDirective)
   QueryList<GridTemplateDirective> templates;
