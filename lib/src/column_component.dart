@@ -14,6 +14,9 @@ class ColumnComponent implements AfterContentInit {
   String field;
 
   @Input()
+  String sortField;
+
+  @Input()
   bool expander = false;
 
   @Input()
@@ -24,6 +27,9 @@ class ColumnComponent implements AfterContentInit {
 
   @Input()
   String width;
+
+  @Input()
+  bool sortable = false;
 
   @ContentChildren(GridTemplateDirective)
   QueryList<GridTemplateDirective> templates;

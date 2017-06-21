@@ -10,8 +10,8 @@
 									templation {{col.expander}}
 								</template>
 							</grid-column>
-							<grid-column header="test col 1" field="Id"></grid-column>
-							<grid-column header="test col 2" field="Name"></grid-column>
+							<grid-column header="test col 1" field="Id" [sortable]="true"></grid-column>
+							<grid-column header="test col 2" field="Name"[sortable]="true"></grid-column>
 							
 							<template let-i="index" let-rowApi="rowApi" let-calloff="rowData" grid-template="rowexpansion" >
 							    <call-off-order-details [rowData]="calloff" (rowUpdated)="rowApi.update($event)"></call-off-order-details>

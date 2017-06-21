@@ -14,4 +14,12 @@ class ColumnHeadersComponent {
   List<ColumnComponent> columns;
 
   ColumnHeadersComponent(@Inject(GridComponent) this.grid);
+
+  Map<String, bool> getColumnClasses(ColumnComponent column) {
+    var result = <String, bool>{};
+
+    if (column.sortable) result['ui-sortable-column'] = true;
+
+    return result;
+  }
 }

@@ -50,12 +50,26 @@ class GridComponent implements AfterContentInit {
   bool expandableRows;
 
   @Input()
-  SortMode sortMode;
+  SortMode sortMode = SortMode.single;
+
+  @Input()
+  int sortOrder = 1;
+
+  @Input()
+  String sortField;
+
+  @Input()
+  bool lazy = false;
+
+  @Input()
+  int first = 0;
 
   @Output()
   Stream get onRowClick => _onRowClick.stream;
 
   final StreamController _onRowClick = new StreamController.broadcast();
+
+  ColumnComponent sortColumn;
 
   @override
   ngAfterContentInit() {
@@ -175,5 +189,105 @@ class GridComponent implements AfterContentInit {
     // Событие не кидаем если, например, кликнули по кнопке в строке
     _onRowClick.add(rowData);
     //}
+  }
+
+  void sort(Event event, ColumnComponent column) {
+    print('sort! $event ${column.field}');
+
+    if (!column.sortable) return;
+
+    String columnSortField = column.sortField ?? column.field;
+
+    // если поле поменялось, то сбрасываем сортировка на умолчание. Иначе, меняем направление
+    this.sortOrder =
+        (this.sortField == columnSortField) ? this.sortOrder * -1 : 1;
+
+    this.sortField = columnSortField;
+
+    this.sortColumn = column;
+
+    if (this.lazy) {
+      throw new Exception(
+          'not implemented'); // TODO: this.onLazyLoad.emit(this.createLazyLoadMetadata());
+    } else {
+      if (this.sortMode == SortMode.multiple)
+        this.sortMultiple();
+      else
+        this.sortSingle();
+    }
+
+    //TODO:
+    /*this.onSort.emit({
+      field: this.sortField,
+      order: this.sortOrder,
+      multisortmeta: this.multiSortMeta
+    });*/
+  }
+
+  bool isSorted(ColumnComponent column) {
+    if (!column.sortable) {
+      return false;
+    }
+
+    String columnSortField = column.sortField ?? column.field;
+
+    if (this.sortMode == SortMode.single) {
+      return (this.sortField != null && columnSortField == this.sortField);
+    } else {
+      throw new Exception('not implemented');
+    }
+  }
+
+  int getSortOrder(ColumnComponent column) {
+    int order = 0;
+
+    String columnSortField = column.sortField ?? column.field;
+
+    if (this.sortMode == SortMode.single) {
+      if (this.sortField != null && columnSortField == this.sortField) {
+        order = this.sortOrder;
+      }
+    } else {
+      throw new Exception('not implemented');
+    }
+
+    return order;
+  }
+
+  void sortMultiple() {
+    throw new Exception('not implemented');
+  }
+
+  dynamic resolveFieldData(dynamic data, String field) {
+    if (data == null || field == null) return null;
+
+    return data[field];
+  }
+
+  void sortSingle() {
+    if (dataSource.data == null) return;
+
+    dataSource.data.sort((data1, data2) {
+      var value1 = this.resolveFieldData(data1, this.sortField);
+      var value2 = this.resolveFieldData(data2, this.sortField);
+
+      int result = 0;
+
+      if (value1 == null && value2 != null)
+        result = -1;
+      else if (value1 != null && value2 == null)
+        result = 1;
+      else if (value1 == null && value2 == null)
+        result = 0;
+      else if (value1 is String && value2 is String) {
+        result = (value1 as String).compareTo(value2);
+      } else {
+        result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+      }
+
+      return (this.sortOrder * result);
+    });
+
+    this.first = 0;
   }
 }

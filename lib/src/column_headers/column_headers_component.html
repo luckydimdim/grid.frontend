@@ -1,8 +1,18 @@
 <template ngFor let-col [ngForOf]="columns">
-	<th [ngStyle]="col.style" [class]="col.styleClass ?? ''" [attr.width]="col.width ?? ''">
+	<th [ngStyle]="col.style"
+	    [class]="col.styleClass ?? ''"
+	    [attr.width]="col.width ?? ''"
+	    (click)="grid.sort($event,col)"
+	    [ngClass]="getColumnClasses(col)"
+	>
+		
 		<span *ngIf="col.headerTemplate == null">{{col.header}}</span>
 		<span *ngIf="col.headerTemplate != null">
 				<column-header-template-loader [column]="col"></column-header-template-loader>
-			</span>
+		</span>
+		<span class="ui-sortable-column-icon fa fa-fw fa-sort"
+		      *ngIf="col.sortable"
+		      [ngClass]="{'fa-sort-desc': (grid.getSortOrder(col) == -1),'fa-sort-asc': (grid.getSortOrder(col) == 1)}">
+		</span>
 	</th>
 </template>
