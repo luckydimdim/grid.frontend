@@ -34,30 +34,54 @@ class GridComponent implements AfterContentInit {
 
   TemplateRef rowExpansionTemplate;
 
+  /**
+   * Style class of the table element.
+   */
   @Input()
   String tableStyleClass;
 
   @Input()
   DataSource dataSource;
 
+  /**
+   * Collection of rows to display as expanded.
+   */
   @Input()
   List expandedRows;
 
+  /**
+   *
+   */
   @Input()
   List creatingModeRows;
 
+  /**
+   * Activates expandable rows feature when true.
+   */
   @Input()
   bool expandableRows;
 
+  /**
+   * Defines whether sorting works on single column or on multiple columns.
+   */
   @Input()
   SortMode sortMode = SortMode.single;
 
+  /**
+   * Order to sort the data by default.
+   */
   @Input()
   int sortOrder = 1;
 
+  /**
+   * Name of the field to sort data by default.
+   */
   @Input()
   String sortField;
 
+  /**
+   * Defines if data is loaded and interacted with in lazy manner.
+   */
   @Input()
   bool lazy = false;
 
