@@ -1,7 +1,7 @@
 import 'package:angular2/core.dart';
 import '../grid/grid_component.dart';
 import '../column_header_template_loader_component.dart';
-import '../column_component.dart';
+import '../column/column_component.dart';
 
 @Component(
     selector: 'tr[column-headers]',

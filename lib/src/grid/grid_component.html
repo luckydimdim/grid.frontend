@@ -4,8 +4,8 @@
 	</thead>
 	<tbody>
 	
-	<template ngFor let-rowData [ngForOf]="dataSource.data" let-i="index" [ngForTrackBy]="trackByFn"
-	          *ngIf="dataSource != null">
+	<template ngFor let-rowData [ngForOf]="dataToRender" let-i="index" [ngForTrackBy]="trackByFn"
+	          *ngIf="dataToRender != null">
 		
 		<tr grid-row [data]="rowData" (click)="handleRowClick($event, rowData)"></tr>
 		
@@ -24,3 +24,15 @@
 <div *ngIf="dataSource == null" class="grid-loading-spin">
 	<loading-spin></loading-spin>
 </div>
+
+<paginator [rows]="rows"
+		   [first]="first"
+		   [totalRecords]="totalRecords"
+		   [pageLinkSize]="pageLinks"
+		   styleClass="ui-paginator-bottom"
+		   [alwaysShow]="alwaysShowPaginator"
+		   (onPageChange)="onPageChange($event)"
+		   [rowsPerPageOptions]="rowsPerPageOptions"
+		   *ngIf="paginator"
+		   styleClass="ui-paginator-bottom">
+</paginator>

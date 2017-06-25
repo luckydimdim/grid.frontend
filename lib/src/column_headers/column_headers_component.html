@@ -14,5 +14,13 @@
 		      *ngIf="col.sortable"
 		      [ngClass]="{'fa-sort-desc': (grid.getSortOrder(col) == -1),'fa-sort-asc': (grid.getSortOrder(col) == 1)}">
 		</span>
+		<input [attr.type]="col.filterType"
+			   class="ui-column-filter ui-inputtext ui-widget ui-state-default ui-corner-all"
+			   [attr.maxlength]="col.filterMaxlength"
+			   [attr.placeholder]="col.filterPlaceholder"
+			   *ngIf="col.filter"
+			   [value]="grid.filters[col.field] != null ? grid.filters[col.field].value : ''"
+			   (click)="grid.onFilterInputClick($event)"
+			   (keyup)="grid.onFilterKeyup($event.target.value, col.field, col.filterMatchMode)"/>
 	</th>
 </template>

@@ -4,14 +4,37 @@
 			<div class="col-xl-12">
 				<div class="card">
 					<div class="card-block">
-						<grid [dataSource]="ds" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'" (onRowClick)="rowClicked($event)">
+						<grid
+								[dataSource]="ds"
+								[expandableRows]="true"
+								[tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'"
+								(onRowClick)="rowClicked($event)"
+								[paginator]="true"
+								[rows]="10"
+								[pageLinks]="3"
+								[rowsPerPageOptions]="[5,10,20]"
+						>
 							<grid-column [expander]="true">
 								<template let-col="column" grid-template="header">
 									templation {{col.expander}}
 								</template>
 							</grid-column>
-							<grid-column header="test col 1" field="Id" [sortable]="true"></grid-column>
-							<grid-column header="test col 2" field="Name"[sortable]="true"></grid-column>
+							<grid-column
+									header="test col 1"
+									field="Id"
+									[sortable]="true"
+									[filter]="true"
+									filterType="number"
+									filterMatchMode="equals"
+									filterPlaceholder="Поиск"
+							></grid-column>
+							<grid-column
+									header="test col 2"
+									field="Name"
+									[sortable]="true"
+									[filter]="true"
+									filterPlaceholder="Поиск"
+							></grid-column>
 							
 							<template let-i="index" let-rowApi="rowApi" let-calloff="rowData" grid-template="rowexpansion" >
 							    <call-off-order-details [rowData]="calloff" (rowUpdated)="rowApi.update($event)"></call-off-order-details>

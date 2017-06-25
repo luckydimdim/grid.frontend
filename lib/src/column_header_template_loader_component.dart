@@ -1,5 +1,5 @@
 import 'package:angular2/core.dart';
-import 'column_component.dart';
+import 'column/column_component.dart';
 
 @Component(selector: 'column-header-template-loader', template: '')
 class ColumnHeaderTemplateLoader implements OnInit, OnDestroy, OnChanges {

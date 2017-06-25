@@ -23,12 +23,12 @@ class AppComponent {
   DataSource ds;
 
   AppComponent() {
-    var o1 = {'Id': '1', 'Name': 'Ордер 1'};
-    var o2 = {'Id': '2', 'Name': 'Ордер 2'};
-
     var orders = new List();
-    orders.add(o1);
-    orders.add(o2);
+
+    for (var i = 1; i < 20; i++) {
+      var o1 = {'Id': i, 'Name': 'Ордер $i'};
+      orders.add(o1);
+    }
 
     ds = new DataSource(data: orders);
   }

@@ -1,1 +1,1 @@
-export 'src/column_component.dart';
+export 'src/column/column_component.dart';

@@ -7,7 +7,19 @@ import './paginator_state.dart';
 
 @Component(selector: 'paginator', templateUrl: 'paginator_component.html')
 class PaginatorComponent {
-  final StreamController _onPageChange = new StreamController.broadcast();
+  List<int> pageLinks = null;
+
+  int _totalRecords = 0;
+
+  int _first = 0;
+
+  int _rows = 0;
+
+  /**
+   * Whether to show it even there is only one page.
+   */
+  @Input()
+  bool alwaysShow;
 
   /**
    * Number of page links to display.
@@ -18,6 +30,7 @@ class PaginatorComponent {
   /**
    * Callback to invoke when page changes, the event object contains information about the new state
    */
+  final StreamController _onPageChange = new StreamController.broadcast();
   @Output()
   Stream get onPageChange => _onPageChange.stream;
 
@@ -40,33 +53,31 @@ class PaginatorComponent {
   @Input()
   List<int> rowsPerPageOptions;
 
-  List<int> pageLinks;
-
-  int _totalRecords = 0;
-
-  int _first = 0;
-
-  int _rows = 0;
-
-  @Input()
+  /**
+   * Number of total records.
+   */
   int get totalRecords => this._totalRecords;
-
+  @Input()
   void set totalRecords(int val) {
     this._totalRecords = val;
     this.updatePageLinks();
   }
 
-  @Input()
+  /**
+   * Zero-relative number of the first row to be displayed.
+   */
   int get first => this._first;
-
+  @Input()
   void set first(int val) {
     this._first = val;
     this.updatePageLinks();
   }
 
-  @Input()
+  /**
+   * Data count to display per page.
+   */
   int get rows => this._rows;
-
+  @Input()
   void set rows(int val) {
     this._rows = val;
     this.updatePageLinks();
@@ -81,7 +92,14 @@ class PaginatorComponent {
   }
 
   int getPageCount() {
-    return (this.totalRecords / this.rows).ceil() || 1;
+    if (this.rows == 0) return 1;
+
+    var result = (this.totalRecords / this.rows).ceil();
+
+    if (result == 0)
+      return 1;
+    else
+      return result;
   }
 
   List<int> calculatePageLinkBoundaries() {
@@ -90,8 +108,8 @@ class PaginatorComponent {
     var visiblePages = min(this.pageLinkSize, numberOfPages);
 
     //calculate range, keep current in middle if necessary
-    var start = max(0, (this.getPage() - ((visiblePages) / 2)).ceil),
-        end = min(numberOfPages - 1, start + visiblePages - 1);
+    var start = max(0, (this.getPage() - ((visiblePages) / 2)).ceil());
+    var end = min(numberOfPages - 1, start + visiblePages - 1);
 
     //check when approaching to last page
     var delta = this.pageLinkSize - (end - start + 1);
@@ -134,6 +152,8 @@ class PaginatorComponent {
   }
 
   int getPage() {
+    if (this.rows == 0) return 0;
+
     return (this.first / this.rows).floor();
   }
 
@@ -154,7 +174,8 @@ class PaginatorComponent {
   }
 
   void onRppChange(Event event) {
-    this.rows = this.rowsPerPageOptions[event.target.selectedIndex];
+    this.rows =
+        this.rowsPerPageOptions[(event.target as SelectElement).selectedIndex];
     this.changePageToFirst(event);
   }
 }
