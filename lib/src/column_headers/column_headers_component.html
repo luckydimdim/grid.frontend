@@ -2,25 +2,37 @@
 	<th [ngStyle]="col.style"
 	    [class]="col.styleClass ?? ''"
 	    [attr.width]="col.width ?? ''"
-	    (click)="grid.sort($event,col)"
+	    
 	    [ngClass]="getColumnClasses(col)"
 	>
 		
-		<span *ngIf="col.headerTemplate == null">{{col.header}}</span>
+		<span *ngIf="col.headerTemplate == null && !col.filter">{{col.header}}</span>
+		<span class="ui-sortable-column-icon fa fa-fw fa-sort"
+		      *ngIf="col.sortable && !col.filter && !col.expander"
+		      [ngClass]="{'fa-sort-desc': (grid.getSortOrder(col) == -1),'fa-sort-asc': (grid.getSortOrder(col) == 1)}">
+		</span>
+		
+		<div class="input-group" *ngIf="col.headerTemplate == null && col.filter">
+			<input [attr.type]="col.filterType"
+			       class="form-control"
+			       [attr.maxlength]="col.filterMaxlength"
+			       [attr.placeholder]="col.header"
+			
+			       [value]="grid.filters[col.field] != null ? grid.filters[col.field].value : ''"
+			       (click)="grid.onFilterInputClick($event)"
+			       (keyup)="grid.onFilterKeyup($event.target.value, col.field, col.filterMatchMode)"/>
+			<span class="input-group-addon fa fa-fw fa-sort" (click)="grid.sort($event,col)"
+			      *ngIf="col.sortable"
+			      [ngClass]="{'fa-sort-desc': (grid.getSortOrder(col) == -1),'fa-sort-asc': (grid.getSortOrder(col) == 1)}">
+			</span>
+		</div>
+		
+		
+		
 		<span *ngIf="col.headerTemplate != null">
 				<column-header-template-loader [column]="col"></column-header-template-loader>
 		</span>
-		<span class="ui-sortable-column-icon fa fa-fw fa-sort"
-		      *ngIf="col.sortable"
-		      [ngClass]="{'fa-sort-desc': (grid.getSortOrder(col) == -1),'fa-sort-asc': (grid.getSortOrder(col) == 1)}">
-		</span>
-		<input [attr.type]="col.filterType"
-			   class="ui-column-filter ui-inputtext ui-widget ui-state-default ui-corner-all"
-			   [attr.maxlength]="col.filterMaxlength"
-			   [attr.placeholder]="col.filterPlaceholder"
-			   *ngIf="col.filter"
-			   [value]="grid.filters[col.field] != null ? grid.filters[col.field].value : ''"
-			   (click)="grid.onFilterInputClick($event)"
-			   (keyup)="grid.onFilterKeyup($event.target.value, col.field, col.filterMatchMode)"/>
+		
+		
 	</th>
 </template>

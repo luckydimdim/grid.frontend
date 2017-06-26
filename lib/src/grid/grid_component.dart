@@ -84,7 +84,7 @@ class GridComponent implements AfterContentInit, OnInit {
    * Number of rows to display per page.
    */
   @Input()
-  int rows = 5;
+  int rows = 10;
 
   /**
    * Style class of the table element.

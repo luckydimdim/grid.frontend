@@ -6,6 +6,7 @@ import '../column/column_component.dart';
 @Component(
     selector: 'tr[column-headers]',
     templateUrl: 'column_headers_component.html',
+    styleUrls: const ['column_headers_component.css'],
     directives: const [ColumnHeaderTemplateLoader])
 class ColumnHeadersComponent {
   final GridComponent grid;
